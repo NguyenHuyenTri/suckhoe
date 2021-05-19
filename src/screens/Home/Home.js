@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
                     <Icons bgColor="red" name="viruses" color="red" navigation={navigation} 
                     navigate='HomeCovidScreen'
                     >COVID-19</Icons>
-                    <Icons bgColor="#E2E2E2" name="capsules" color={theme.colors.appbar} navigation={navigation} 
+                    <Icons bgColor="#E2E2E2" name="capsules" color="#F5AD47" navigation={navigation}
                         navigate='HomeCovidScreen'
                     >Thuốc</Icons>
                 </View>

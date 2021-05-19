@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image,SafeAreaView} from 'react-native';
 
 import NextButton from '../../components/SplashScreen/NextButton';
 import {DotBold, DotLight} from '../../components/SplashScreen/DotSlider';
+import StatusBars from '../../components/StatusBar/StatusBar';
 
 const Tips2 = props => {
     const push = () =>{
@@ -12,7 +13,8 @@ const Tips2 = props => {
           });
     }
      return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+            <StatusBars/>
             <View style={styles.imageContainer}>
                 <Image source={require('../../assets/screen/img/wear_mask.png')} style={styles.image} resizeMode="stretch" 
                 />
@@ -24,7 +26,7 @@ const Tips2 = props => {
                 <DotBold />
                 <DotLight />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image,SafeAreaView} from 'react-native';
 
 
 import NextButton from '../../components/SplashScreen/NextButton';
 import {DotBold, DotLight} from '../../components/SplashScreen/DotSlider';
+import StatusBars from '../../components/StatusBar/StatusBar';
 
 const Tips3 = props => {
 
@@ -14,7 +15,8 @@ const Tips3 = props => {
           });
     }
      return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+            <StatusBars/>
             <View style={styles.imageContainer}>
             <Image source={require('../../assets/screen/img/use_tissue.png')} style={styles.image} resizeMode="stretch" 
                 />
@@ -26,7 +28,7 @@ const Tips3 = props => {
                 <DotLight />
                 <DotBold />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

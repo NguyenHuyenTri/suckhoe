@@ -4,6 +4,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from 'react-native';
+import StatusBars from '../StatusBar/StatusBar';
 
 type Props = {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ const Background = ({ children }: Props) => (
     <View
         style={styles.background}
     >
+      <StatusBars/>
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         {children}
       </KeyboardAvoidingView>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text, View, StatusBar } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -13,8 +12,12 @@ import {
     Home
 } from '../src/screens/export';
 import SkipButton from './components/SplashScreen/SkipButton';
+import StatusBar from './components/StatusBar/StatusBar'
+
 import { theme } from './core/theme'
 import { Drawer } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 
 const DrawerPage = createDrawerNavigator();
@@ -27,11 +30,8 @@ function DrawerContent() {
     const [active, setActive] = React.useState('');
     return (
         <>
-            <StatusBar backgroundColor={theme.colors.statusbar}
-             barStyle="dark-content" translucent={false} 
-             showHideTransition="fade"
-             />
-            <Drawer.Section title="Some title" style={{ flex: 1,}}>
+            <StatusBar />
+            <Drawer.Section title="Some title" style={{ flex: 1, }}>
                 <Drawer.Item
                     label="First Item"
                     active={active === 'first'}
@@ -43,89 +43,89 @@ function DrawerContent() {
                     onPress={() => setActive('second')}
                 />
             </Drawer.Section>
-            
+
         </>
 
     );
 }
 
-function HomeMainScreen() {
+function IntroScreen() {
 
     return (
-        <Stack.Navigator initialRouteName="SplashScreen"
-            headerMode="screen"
-            animation="fade"
-        >
-            <Stack.Screen name="SplashScreen" component={SplashScreen}
-                options={{
+        <>
+            <Stack.Navigator initialRouteName="SplashScreen"
+                headerMode="screen"
+                animation="fade"
+            >
+                <Stack.Screen name="SplashScreen" component={SplashScreen}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="Tips1"
+                    component={Tips1}
+                    headerMode="float"
+                    options={({ navigation }) => ({
+                        headerLeft: null,
+                        title: '',
+                        headerStyle: { backgroundColor: '#FCF6EE', elevation: 0 },
+                        headerRight: () => (
+                            <SkipButton text='Bỏ qua' onClick={() => navigation.reset({
+                                index: 0,
+                                routes: [{ name: 'Home' }],
+                            })}
+                            />
+                        )
+                    })}
+                />
+                <Stack.Screen
+                    name="Tips2"
+                    component={Tips2}
+                    animation="none"
+                    options={({ navigation }) => ({
+                        mode: 'screen',
+                        title: '',
+                        headerStyle: { backgroundColor: '#FCF6EE', elevation: 0 },
+                        headerLeft: () => (
+                            <SkipButton text='Bước trước' onClick={() => navigation.navigate('Tips1')} />
+                        ),
+                        headerRight: () => (
+                            <SkipButton text='Bỏ qua' onClick={() => navigation.reset({
+                                index: 0,
+                                routes: [{ name: 'Home' }],
+                            })} />
+                        )
+                    })}
+                />
+                <Stack.Screen
+                    name="Tips3"
+                    component={Tips3}
+                    options={({ navigation }) => ({
+                        headerLeft: () => (
+                            <SkipButton text='Bước trước' onClick={() => navigation.navigate('Tips2')} />
+                        ),
+                        title: '',
+                        headerStyle: { backgroundColor: '#FCF6EE', elevation: 0 },
+                        headerRight: null
+                    })}
+                />
+
+                <Stack.Screen name="Home" options={{
                     headerShown: false
-                }}
-            />
+                }} component={RootNavigator} />
 
-            <Stack.Screen
-                name="Tips1"
-                component={Tips1}
-                headerMode="float"
-                options={({ navigation }) => ({
-                    headerLeft: null,
-                    title: '',
-                    headerStyle: { backgroundColor: '#FCF6EE', elevation: 0 },
-                    headerRight: () => (
-                        <SkipButton text='Bỏ qua' onClick={() => navigation.reset({
-                            index: 0,
-                            routes: [{ name: 'Home' }],
-                        })}
-                        />
-                    )
-                })}
-            />
-            <Stack.Screen
-                name="Tips2"
-                component={Tips2}
-                animation="none"
-                options={({ navigation }) => ({
-                    mode: 'screen',
-                    title: '',
-                    headerStyle: { backgroundColor: '#FCF6EE', elevation: 0 },
-                    headerLeft: () => (
-                        <SkipButton text='Bước trước' onClick={() => navigation.navigate('Tips1')} />
-                    ),
-                    headerRight: () => (
-                        <SkipButton text='Bỏ qua' onClick={() => navigation.reset({
-                            index: 0,
-                            routes: [{ name: 'Home' }],
-                        })} />
-                    )
-                })}
-            />
-            <Stack.Screen
-                name="Tips3"
-                component={Tips3}
-                options={({ navigation }) => ({
-                    headerLeft: () => (
-                        <SkipButton text='Bước trước' onClick={() => navigation.navigate('Tips2')} />
-                    ),
-                    title: '',
-                    headerStyle: { backgroundColor: '#FCF6EE', elevation: 0 },
-                    headerRight: null
-                })}
-            />
+                <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
 
-            <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
+                <Stack.Screen name="HomeCovidScreen" options={{
+                    headerShown: false
+                }} component={HomeCovidScreen} />
 
-            <Stack.Screen name="Home" options={{
-                headerShown: false
-            }} component={RootNavigator} />
-
-            <Stack.Screen name="HomeCovidScreen" options={{
-                headerShown: false
-            }} component={HomeCovidScreen} />
-
-
-
-        </Stack.Navigator>
+            </Stack.Navigator>
+        </>
     );
 }
+
 
 function RootNavigator() {
     return (
@@ -139,25 +139,48 @@ function RootNavigator() {
     );
 };
 
+
 function MyTabs() {
 
     return (
-        <React.Fragment>
-            <Tab.Navigator initialRouteName="Home"
-                shifting={true}
-                sceneAnimationEnabled={false}
-                screenOptions={{
-                    tabBarColor: theme.colors.appbar
-                }}
+        <Tab.Navigator initialRouteName="Home"
+            labeled={true}
+            sceneAnimationEnabled={true}
+            activeColor='white'
+            // inactiveColor="white"
+            barStyle={{ backgroundColor: theme.colors.appbar }}
             >
-                <Tab.Screen name="Trang chủ" component={Home} options={{
-                    tabBarIcon: 'home',
-                }} />
-                <Tab.Screen name="Bài viết" component={ForgotPasswordScreen} options={{
-                    tabBarIcon: 'message-text-outline',
-                }} />
-            </Tab.Navigator>
-        </React.Fragment>
+            <Tab.Screen name="Trang chủ" component={Home} options={{
+                tabBarLabel: 'Trang Chủ',
+                tabBarIcon: ({ color }) => (
+                    <Icon
+                        name="home"
+                        size={20}
+                        color={color}
+                    />
+                ),
+            }} />
+            <Tab.Screen name="Bài viết" component={ForgotPasswordScreen} options={{
+                tabBarLabel: 'Bài viết',
+                tabBarIcon: ({ color }) => (
+                    <Icon
+                        name="newspaper"
+                        size={20}
+                        color={color}
+                    />
+                ),
+            }} />
+            <Tab.Screen name="Thông tin" component={ForgotPasswordScreen} options={{
+                tabBarLabel: 'Thông tin',
+                tabBarIcon: ({ color }) => (
+                    <Icon
+                        name="sliders-h"
+                        color={color}
+                        size={20}
+                    />
+                ),
+            }} />
+        </Tab.Navigator>
     );
 }
-export default HomeMainScreen;
+export default IntroScreen;

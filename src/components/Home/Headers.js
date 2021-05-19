@@ -17,7 +17,7 @@ const Headers = (props) => {
 const styles = StyleSheet.create({
     headerContainer: {
         backgroundColor: theme.colors.appbar,
-        height: '12.5%',
+        height: '10%',
         
     },
     headerTitle: {

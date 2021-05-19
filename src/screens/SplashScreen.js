@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Background from '../components/HomeLogin/Background';
 import Logo from '../components/HomeLogin/Logo';
 

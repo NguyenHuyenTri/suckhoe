@@ -3,12 +3,12 @@ import {
     View,
     StyleSheet,
     SafeAreaView,
-    StatusBar
+    
 } from 'react-native';
 import 'moment'
-import { Tab } from 'react-native-elements';
 import {theme} from '../../core/theme'
-
+import StatusBar from '../../components/StatusBar/StatusBar'
+import SearchBar from '../../components/covid-19/SearchBar'
 const HomeCovidScreen = ({ navigation }) => {
 
 
@@ -43,13 +43,9 @@ const HomeCovidScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={theme.colors.appbar}  barStyle="dark-content" />
+            <StatusBar/>
             <View style={styles.container}>
-                <Tab>
-                    <Tab.Item title="Recent" />
-                    <Tab.Item title="favourite" />
-                    <Tab.Item title="cart" />
-                </Tab>
+               <SearchBar/>
             </View>
         </SafeAreaView>
 
@@ -59,29 +55,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#FFFFFF",
-        marginTop: 30
     },
-    cards: {
-        marginTop: -90
-    },
-    casesHeading: {
-        color: '#FFF',
-        fontSize: 15,
-        alignSelf: 'center',
-        fontWeight: 'bold',
-        marginTop: 30
-    },
-    flatList: {
-        marginTop: 10
-    },
-    iconContainer: {
-        marginTop: '1%',
-        marginBottom: '3%',
-        width: '95%',
-        height: '45%',
-        marginLeft: '2.5%',
-        alignSelf: 'center',
-    }
-
 })
 export default memo(HomeCovidScreen);
