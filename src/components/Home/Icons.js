@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import {theme} from '../../core/theme'
 const Icons = (props) => {
 
     console.log(props.navigate)
@@ -9,9 +9,7 @@ const Icons = (props) => {
      return (
         <TouchableOpacity style={[styles.container, {backgroundColor: props.bgColor}]} 
         onPress={()=>props.navigation.navigate(`${props.navigate}`)}>
-            <View style={styles.iconWrapper}>
-                <Icon name={props.name} size={24} color={props.color} />
-            </View>
+                <Icon name={props.name} size={30} color={props.color} />
             <Text style={styles.text}>{props.children}</Text>
         </TouchableOpacity>
     );
@@ -22,25 +20,20 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '40%',
         height: '96%',
-        borderRadius: 20,
-        marginVertical: '2%',
-        marginRight: '2%',
-    },
-    iconWrapper: {
-        width: '30%',
-        height: '30%',
-        backgroundColor: '#FFF',
-        borderRadius: 15,
-        marginLeft: '10%',
-        marginTop: '10%',
-        justifyContent: 'center',
-        alignItems: 'center'
+        marginVertical: '3%',
+        marginHorizontal:'1%',
+        marginRight: '3%',
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:theme.colors.backGround,
+        elevation:2,
     },
     text: {
-        marginLeft: '10%',
-        marginVertical: '10%',
-        fontSize: 20,
-        fontFamily: 'HelveticaNeue'
+        marginTop:5,
+        fontSize: 16,
+        fontFamily: 'HelveticaNeue',
+        color:theme.colors.text,
+        textAlign:'center'
     }
 });
 

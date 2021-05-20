@@ -19,7 +19,7 @@ const Tips2 = props => {
                 <Image source={require('../../assets/screen/img/wear_mask.png')} style={styles.image} resizeMode="stretch" 
                 />
             </View>
-            <Text style={styles.textBody}>Đeo khẩu trang nơi công cộng, trên phương tiện giao thông công cộng</Text>
+            <Text style={styles.textBody}>Đeo khẩu trang nơi công cộng, trên phương tiện giao thông công cộng đảm bảo an toàn cho bản thân và cộng đồng</Text>
             <NextButton onClick={push}>Tiếp theo</NextButton>
             <View style={{flexDirection: 'row'}}>
                 <DotLight />

@@ -5,11 +5,12 @@ import {theme} from '../../core/theme'
 const Headers = (props) => {
     return (
         <Header
-            placement="left"
+            placement="center"
             barStyle="light-content"
-            leftComponent={{ icon: 'menu', color: '#fff', onPress: () => props.navigation.openDrawer(), }}
-            centerComponent={{text: 'ĐÔNG Á', style:{...styles.headerTitle}}}
+            leftComponent={{ icon: 'menu', color: theme.colors.text, onPress: () => props.navigation.openDrawer(), }}
+            centerComponent={{text: 'Đông Á', style:{...styles.headerTitle}}}
             containerStyle={styles.headerContainer}
+            elevated='true'
         />
     );
 };
@@ -18,12 +19,11 @@ const styles = StyleSheet.create({
     headerContainer: {
         backgroundColor: theme.colors.appbar,
         height: '10%',
-        
     },
     headerTitle: {
         fontFamily: 'HelveticaNeue',
-        color: '#FFFFFF',
-        fontSize: 20,
+        color: theme.colors.text,
+        fontSize: 18,
     },
 });
 

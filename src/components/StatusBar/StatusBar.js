@@ -4,7 +4,7 @@ import {theme} from '../../core/theme';
 
  function StatusBars (){
     return (
-        <StatusBar backgroundColor={theme.colors.statusbar}
+        <StatusBar backgroundColor={theme.colors.backGround}
         barStyle="dark-content" translucent={false} 
         showHideTransition="fade"
         />

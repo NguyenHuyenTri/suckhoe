@@ -110,7 +110,6 @@ function IntroScreen() {
                         headerRight: null
                     })}
                 />
-
                 <Stack.Screen name="Home" options={{
                     headerShown: false
                 }} component={RootNavigator} />
@@ -118,7 +117,18 @@ function IntroScreen() {
                 <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
 
                 <Stack.Screen name="HomeCovidScreen" options={{
-                    headerShown: false
+                    headerShown: true,
+                    title: 'Viêm đường hô hấp Covid-19',
+                    headerHideShadow: true,
+                    headerTitleStyle: {
+                        fontSize: 18,
+                        color: theme.colors.text,
+                        elevation: 5,
+                        fontFamily: 'HelveticaNeue',
+                    },
+                    headerStyle: {
+                        backgroundColor: theme.colors.appbar,
+                    },
                 }} component={HomeCovidScreen} />
 
             </Stack.Navigator>
@@ -146,10 +156,10 @@ function MyTabs() {
         <Tab.Navigator initialRouteName="Home"
             labeled={true}
             sceneAnimationEnabled={true}
-            activeColor='white'
-            // inactiveColor="white"
+            activeColor={theme.home.icon}
+            inactiveColor={theme.home.textbottom}
             barStyle={{ backgroundColor: theme.colors.appbar }}
-            >
+        >
             <Tab.Screen name="Trang chủ" component={Home} options={{
                 tabBarLabel: 'Trang Chủ',
                 tabBarIcon: ({ color }) => (

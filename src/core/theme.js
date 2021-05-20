@@ -8,13 +8,21 @@ export const theme = {
     secondary: '#146275',
     error: '#f13a59',
     colorButton:'#6495ed',
-    appbar :'#F5AD47',
+    appbar :'#FFFFFF',
+    // appbar :'#F5AD47',
     // statusbar:'#039be5',
     statusbar:'#fff176',
+    backGround:'#e0e0e0',
+    text:'#212A45',
   },
   covid:{
     searchBackColor :"#eceff1",
     placeholderColor:'gray',
     fontColor :"black"
+  },
+  home:{
+    gridview:'#FFFFFF',
+    icon:'#F5AD47',
+    textbottom:'#8F9AB3',
   }
 };

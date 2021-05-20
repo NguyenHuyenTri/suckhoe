@@ -11,16 +11,16 @@ const Name = props => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '60%',
-        height: '8%',
+        width: '50%',
+        height: '9%',
         backgroundColor: '#F5AD47',
-        borderRadius: 50,
+        borderRadius: 25,
         marginVertical: '5%',
         justifyContent: 'center',
         alignItems: 'center'
     },
     title: {
-        fontSize: 28,
+        fontSize: 18,
         color: '#FFF',
         fontFamily: 'HelveticaNeue'
     }
