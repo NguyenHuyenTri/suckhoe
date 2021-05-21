@@ -2,7 +2,6 @@ import React, { memo, useState, useEffect } from 'react';
 import {
     View,
     StyleSheet,
-    SafeAreaView,
     Text, ScrollView, useWindowDimensions
 } from 'react-native';
 import moment from 'moment';
@@ -62,7 +61,6 @@ const HomeCovidScreen = ({ navigation }) => {
           inactiveColor={theme.home.textbottom}
         />
       );
-
 
     return (
         <>
@@ -130,7 +128,7 @@ const SecondRoute = () => {
                 <ChartView title="Tử vong" num={data ? numberWithCommas(data.Deaths) : 0} color="#E35757"
                     arrownum={data && dataLast ? numberWithCommas(data.Deaths-dataLast.Deaths) : 0} />
                 <ChartView title="Bình phục" num={data && dataLast ? numberWithCommas(data.Recovered) : 0} color="#6AB276"
-                    arrownum={data && dataLast ? numberWithCommas(data.Recovered-dataLast.Recovered) : 0}
+                    arrownum={data && dataLast ? numberWithCommas(data.Active-dataLast.Active) : 0}
                 />
             </View>
             <View style={styles.caseContainer}>
@@ -176,7 +174,7 @@ const FirstRoute = () => {
                 console.log(e)
             }
         }
-        fetchCovidData();
+        fetchCovidData(); 
     }, []);
 
     const convertTime = (time, formatType) => {

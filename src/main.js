@@ -9,7 +9,11 @@ import {
     Tips1,
     Tips2,
     Tips3,
-    Home
+    Home,
+    DrugScreen,
+    CategoryScreen,
+    CategoryNewScreen,
+    DrugDetailsScreen,
 } from '../src/screens/export';
 import SkipButton from './components/SplashScreen/SkipButton';
 import StatusBar from './components/StatusBar/StatusBar'
@@ -17,7 +21,6 @@ import StatusBar from './components/StatusBar/StatusBar'
 import { theme } from './core/theme'
 import { Drawer } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { View, Text, TouchableOpacity } from 'react-native';
 
 
 const DrawerPage = createDrawerNavigator();
@@ -128,9 +131,73 @@ function IntroScreen() {
                     },
                     headerStyle: {
                         backgroundColor: theme.colors.appbar,
+                        height: 50
                     },
                 }} component={HomeCovidScreen} />
 
+                <Stack.Screen name="DrugScreen" options={{
+                    headerShown: true,
+                    title: 'Thuốc ',
+                    headerHideShadow: true,
+                    headerTitleStyle: {
+                        fontSize: 18,
+                        color: theme.colors.text,
+                        elevation: 5,
+                        fontFamily: 'HelveticaNeue',
+                    },
+                    headerStyle: {
+                        backgroundColor: theme.colors.appbar,
+                        height: 50
+                    },
+                }} component={DrugScreen} />
+
+                <Stack.Screen name="CategoryScreen" options={{
+                    headerShown: true,
+                    title: 'Bài viết',
+                    headerHideShadow: true,
+                    headerTitleStyle: {
+                        fontSize: 18,
+                        color: theme.colors.text,
+                        elevation: 5,
+                        fontFamily: 'HelveticaNeue',
+                    },
+                    headerStyle: {
+                        backgroundColor: theme.colors.appbar,
+                        height: 50
+                    },
+                }} component={CategoryScreen} />
+
+                <Stack.Screen name="CategoryNewScreen" options={{
+                    headerShown: true,
+                    title: 'Chi tiết',
+                    headerHideShadow: true,
+                    headerTitleStyle: {
+                        fontSize: 18,
+                        color: theme.colors.text,
+                        elevation: 5,
+                        fontFamily: 'HelveticaNeue',
+                    },
+                    headerStyle: {
+                        backgroundColor: theme.colors.appbar,
+                        height: 50
+                    },
+                }} component={CategoryNewScreen} />
+
+                <Stack.Screen name="DrugDetailsScreen" options={{
+                    headerShown: true,
+                    title: 'Chi tiết',
+                    headerHideShadow: true,
+                    headerTitleStyle: {
+                        fontSize: 18,
+                        color: theme.colors.text,
+                        elevation: 5,
+                        fontFamily: 'HelveticaNeue',
+                    },
+                    headerStyle: {
+                        backgroundColor: theme.colors.appbar,
+                        height: 50
+                    },
+                }} component={DrugDetailsScreen} />
             </Stack.Navigator>
         </>
     );

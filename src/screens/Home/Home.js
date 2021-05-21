@@ -24,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
                             navigate='HomeCovidScreen'
                         >Covid-19</Icons>
                         <Icons bgColor={theme.home.gridview} name="capsules" color={theme.home.icon} navigation={navigation}
-                            navigate='HomeCovidScreen'
+                            navigate='DrugScreen'
                         >Thuốc</Icons>
                     </View>
                     <View style={styles.item}>
@@ -34,14 +34,8 @@ const HomeScreen = ({ navigation }) => {
                             navigation={navigation} navigate='HomeCovidScreen'>Bệnh theo mùa</Icons>
                     </View>
                     <View style={styles.item}>
-                        <Icons bgColor={theme.home.gridview} name="clinic-medical" color={theme.home.icon}
-                            navigation={navigation} navigate='HomeCovidScreen' >Tra cứu thuốc</Icons>
                         <Icons bgColor={theme.home.gridview} name="newspaper" color={theme.home.icon}
-                            navigation={navigation} navigate='HomeCovidScreen' >Tin tức</Icons>
-                    </View>
-                    <View style={styles.item}>
-                        <Icons bgColor={theme.home.gridview} name="newspaper" color={theme.home.icon}
-                            navigation={navigation} navigate='HomeCovidScreen' >Bài viết</Icons>
+                            navigation={navigation} navigate='CategoryScreen' >Bài viết</Icons>
                         <Icons bgColor={theme.home.gridview} name="ellipsis-h" color={theme.home.icon}
                             navigation={navigation} navigate='HomeCovidScreen' >Xem thêm</Icons>
                     </View>

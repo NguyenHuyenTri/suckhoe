@@ -6,7 +6,7 @@ const Search = () => {
 
     const [state, setState] = React.useState('');
     return (
-        <View style={{ flex: 1 }} keyboardShouldPersistTaps="handled">
+        <View keyboardShouldPersistTaps="handled">
             <SearchBar
                 round
                 lightTheme
@@ -19,9 +19,9 @@ const Search = () => {
                 cancelButtonTitle=''
                 showCancel={true}
                 containerStyle={{
-                    backgroundColor:theme.colors.backGround
+                    backgroundColor:theme.colors.backGround,
+                    height:50
                 }}
-                
             />
         </View>
     );
