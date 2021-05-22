@@ -9,15 +9,19 @@ import {
 import 'moment'
 import Header from '../../components/Home/Headers';
 import Icons from '../../components/Home/Icons';
-import { theme } from '../../core/theme'
+import { theme } from '../../core/theme';
+import Slide from '../../components/Home/Slide'
 
 const HomeScreen = ({ navigation }) => {
+
 
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#fff" barStyle="dark-content" />
             <Header navigation={navigation} />
+
             <ScrollView>
+                <Slide/>
                 <View style={styles.iconContainer}>
                     <View style={styles.item}>
                         <Icons bgColor={theme.home.gridview} name="viruses" color="red" navigation={navigation}
@@ -29,9 +33,9 @@ const HomeScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.item}>
                         <Icons bgColor={theme.home.gridview} name="child" color={theme.home.icon}
-                            navigation={navigation} navigate='HomeCovidScreen'>Bệnh theo vùng{'\n'} cơ thể</Icons>
+                            navigation={navigation} navigate='BodyScreen'  navigation={navigation}>Bệnh theo vùng{'\n'} cơ thể</Icons>
                         <Icons bgColor={theme.home.gridview} name="cloud-sun" color={theme.home.icon}
-                            navigation={navigation} navigate='HomeCovidScreen'>Bệnh theo mùa</Icons>
+                            navigation={navigation} navigate='WeatherScreen'>Bệnh theo mùa</Icons>
                     </View>
                     <View style={styles.item}>
                         <Icons bgColor={theme.home.gridview} name="newspaper" color={theme.home.icon}

@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { FlatList, StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '../../core/theme';
-
-
 
 const data = {
     id: 1,
     loai: 'GIẢM ĐAU, HẠ SỐT',
     ten: 'Paradon',
-    url:'https://image.pharmacity.vn/live/uploads/2019/04/P00007_1_l-300x300.jpg',
+    url: 'https://image.pharmacity.vn/live/uploads/2019/04/P00007_1_l-300x300.jpg',
     chucNang: `   Thuốc giảm đau, hạ sốt Panadol 500mg vỉ xanh dương có thành phần là Paracetamol 500mg,được dùng để hạ sốt, giảm đau từ nhẹ đến vừa bao gồm:
     Đau đầu, đau nửa đầu, đau cơ,đau bụng kinh, đau cơ xương khớp, đau sau khi tiêm Vacxin, đau răng hoặc sau các thủ thuật nha khoa.`,//title
-    giaTien:'110,000',
-    chiDinh:'Chống chỉ định Paracetamol cho những bệnh nhân có tiền sử quá mẫn cảm với Paracetamol hoặc bất với kỳ tá dược nào của thuốc.',
-    lieuDung:`a. Người lớn (kể cả người cao tuổi) và trẻ em từ 12 tuổi trở lên:
+    giaTien: '110,000',
+    chiDinh: 'Chống chỉ định Paracetamol cho những bệnh nhân có tiền sử quá mẫn cảm với Paracetamol hoặc bất với kỳ tá dược nào của thuốc.',
+    lieuDung: `a. Người lớn (kể cả người cao tuổi) và trẻ em từ 12 tuổi trở lên:
     + Dùng 500mg đến 1g paracetamol (1–2 viên/lần), sau mỗi 4–6 giờ nếu cần.
     + Chỉ dùng đường uống.
     + Liều tối đa hàng ngày: 4000mg (8 viên).
@@ -32,12 +30,12 @@ const data = {
     c. Trẻ em dưới 6 tuổi: Không khuyến cáo dùng thuốc cho trẻ em dưới 6 tuổi.
     Thận trọng:
     + Những bệnh nhân được chẩn đoán là suy gan hoặc suy thận nên tham khảo ý kiến bác sĩ trước khi dùng Paracetamol`,
-    baoquan:'Bảo quản ở nhiệt độ không quá 30 độ C.',
-    thongtin:{
-        thanhphan:'-Paracetamol 500mg, tá dược vừa đủ 1 viên',
-        donggoi:'Hộp 10 vỉ x 12 viên',
-        xuatxu:'-Anh',
-        nhaSx:'-GlaxoSmithKline',
+    baoquan: 'Bảo quản ở nhiệt độ không quá 30 độ C.',
+    thongtin: {
+        thanhphan: '-Paracetamol 500mg, tá dược vừa đủ 1 viên',
+        donggoi: 'Hộp 10 vỉ x 12 viên',
+        xuatxu: '-Anh',
+        nhaSx: '-GlaxoSmithKline',
     },
 }
 
@@ -45,32 +43,34 @@ const Drug = () => {
 
     return (
         <SafeAreaView style={styles.root}>
-            <ScrollView style={styles.viewNews}>
-            <Text style={styles.titleText}>{data.loai}</Text>
-
+            <ScrollView style={styles.scrool}>
+               
+                <View style={styles.container}>
                 <Image style={styles.image}
                     source={{
                         uri: data.url,
                     }}
                 />
-                <Text style={styles.summaryText}>Loại: {data.ten}</Text>
-                <Text style={styles.summaryText}>Giá bán: {data.giaTien} VNĐ</Text>
-                <Text style={styles.tieudeText}>Đóng gói:</Text>
-                <Text style={styles.contentText}>{data.thongtin.donggoi}</Text>
-                <Text style={styles.tieudeText}>Thành phần:</Text>
-                <Text style={styles.contentText}>{data.thongtin.thanhphan}</Text>
-                <Text style={styles.tieudeText}>Công dụng:</Text>
-                <Text style={styles.contentText}>{data.chucNang}</Text>
-                <Text style={styles.tieudeText}>Đối tượng sử dụng:</Text>
-                <Text style={styles.contentText}>{data.lieuDung}</Text>
-                <Text style={styles.tieudeText}>Bảo quản:</Text>
-                <Text style={styles.contentText}>{data.baoquan}</Text>
-                <Text style={styles.tieudeText}>Nhà sản xuất: </Text>
-                <Text style={styles.contentText}>{data.thongtin.nhaSx}</Text>
-                <Text style={styles.tieudeText}>Sản xuất tại:</Text> 
-                <Text style={styles.contentText}>{data.thongtin.xuatxu}</Text>
-                
-               
+                </View>
+                <View style={styles.viewNews}>
+                    <Text style={styles.titleText}>{data.loai}</Text>
+                    <Text style={styles.summaryText}>Loại: {data.ten}</Text>
+                    <Text style={styles.summaryText}>Giá bán: {data.giaTien} VNĐ</Text>
+                    <Text style={styles.tieudeText}>Đóng gói:</Text>
+                    <Text style={styles.contentText}>{data.thongtin.donggoi}</Text>
+                    <Text style={styles.tieudeText}>Thành phần:</Text>
+                    <Text style={styles.contentText}>{data.thongtin.thanhphan}</Text>
+                    <Text style={styles.tieudeText}>Công dụng:</Text>
+                    <Text style={styles.contentText}>{data.chucNang}</Text>
+                    <Text style={styles.tieudeText}>Đối tượng sử dụng:</Text>
+                    <Text style={styles.contentText}>{data.lieuDung}</Text>
+                    <Text style={styles.tieudeText}>Bảo quản:</Text>
+                    <Text style={styles.contentText}>{data.baoquan}</Text>
+                    <Text style={styles.tieudeText}>Nhà sản xuất: </Text>
+                    <Text style={styles.contentText}>{data.thongtin.nhaSx}</Text>
+                    <Text style={styles.tieudeText}>Sản xuất tại:</Text>
+                    <Text style={styles.contentText}>{data.thongtin.xuatxu}</Text>
+                </View>
             </ScrollView>
         </SafeAreaView>
     )
@@ -78,16 +78,25 @@ const Drug = () => {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        backgroundColor: theme.colors.backGround
+        backgroundColor: '#FFFFFF',
+        flexDirection: 'row',
+    },
+    scrool:{
+        flex: 1,
+    },
+    container:{
+        flexDirection: 'row',
+  
+        height:250,
     },
     viewNews: {
         paddingHorizontal: 10,
         flex: 1,
+        backgroundColor: theme.colors.backGround,
     },
     image: {
-        paddingTop: 5,
         height: 250,
-        width:300,
+        width: 250,
         marginLeft:50
     },
     titleText: {
@@ -96,7 +105,8 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         fontFamily: 'HelveticaNeue',
         textAlign: 'justify',
-        lineHeight:25
+        lineHeight: 25,
+        backgroundColor: theme.colors.backGround,
     },
 
     summaryText: {

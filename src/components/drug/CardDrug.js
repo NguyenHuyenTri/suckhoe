@@ -21,7 +21,7 @@ export default DrugCard = (props) => {
         <>
             <View style={styles.root}>
                 <FlatList
-                    style={styles.notificationList}
+                    style={styles.boxList}
                     data={data}
                     keyExtractor={(item) => {
                         return item.id;
@@ -29,7 +29,7 @@ export default DrugCard = (props) => {
                     renderItem={({ item }) => {
                         return (
                             <>
-                                <TouchableOpacity style={styles.notificationBox}
+                                <TouchableOpacity style={styles.box}
                                     onPress={() => props.navigation.navigate('DrugDetailsScreen')}
                                 >
                                     <Image style={styles.image}
@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
     root: {
         flex: 1
     },
-    notificationList: {
+    boxList: {
         padding: 10,
     },
-    notificationBox: {
+    box: {
         paddingTop: 10,
         paddingBottom: 10,
         marginTop: 5,

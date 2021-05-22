@@ -56,9 +56,10 @@ const HomeCovidScreen = ({ navigation }) => {
         <TabBar
           {...props}
           indicatorStyle={{ backgroundColor: theme.home.icon ,height:4}}
-          style={{ backgroundColor: '#FFFFFF',color:'red' }}
-          activeColor={theme.home.icon}
-          inactiveColor={theme.home.textbottom}
+          style={{ backgroundColor: theme.colors.activeColor,  elevation: 0,
+          shadowOpacity: 0 , borderColor: 'none'}}
+          activeColor={theme.colors.appbar}
+          inactiveColor={theme.colors.text}
         />
       );
 
@@ -220,6 +221,11 @@ const FirstRoute = () => {
 
 
 const styles = StyleSheet.create({
+    container: {
+        padding: 20,
+        flex: 1,
+        backgroundColor:theme.colors.backGround
+    },
     headerDate: {
         fontSize: 14,
         fontWeight: '400',
@@ -237,32 +243,11 @@ const styles = StyleSheet.create({
         color: '#35343A',
     },
 
-
-    img: {
-        width: 30,
-        height: 30,
-    },
-    headerTop: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    flex: {
-        flex: 1,
-        backgroundColor: '#F4F4F4',
-    },
-    container: {
-        padding: 20,
-        flex: 1,
-    },
-
-
-
     chartContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 20,
     },
-
     caseContainer: {
         marginTop: 20,
     },

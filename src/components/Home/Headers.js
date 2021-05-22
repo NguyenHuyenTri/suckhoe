@@ -7,10 +7,10 @@ const Headers = (props) => {
         <Header
             placement="center"
             barStyle="light-content"
-            leftComponent={{ icon: 'menu', color: theme.colors.text, onPress: () => props.navigation.openDrawer(), }}
+            leftComponent={{ icon: 'menu', color: theme.colors.activeColor, onPress: () => props.navigation.openDrawer(), }}
             centerComponent={{text: 'Đông Á', style:{...styles.headerTitle}}}
             containerStyle={styles.headerContainer}
-            elevated='true'
+            elevated='false'
         />
     );
 };
@@ -19,11 +19,12 @@ const styles = StyleSheet.create({
     headerContainer: {
         backgroundColor: theme.colors.appbar,
         height: '10%',
+        borderBottomColor:theme.colors.backGround,
     },
     headerTitle: {
         fontFamily: 'HelveticaNeue',
-        color: theme.colors.text,
-        fontSize: 18,
+        color: theme.colors.activeColor,
+        fontSize: 22,
     },
 });
 

@@ -9,7 +9,6 @@ const Search = () => {
         <View keyboardShouldPersistTaps="handled">
             <SearchBar
                 round
-                lightTheme
                 onChangeText={(text) => setState(text)}
                 onClear={(text) => setState(text)}
                 value={state}
@@ -18,9 +17,16 @@ const Search = () => {
                 platform="ios"
                 cancelButtonTitle=''
                 showCancel={true}
+                inputStyle={{
+                    backgroundColor:theme.colors.activeColor,
+                }}
+                inputContainerStyle={{
+                    backgroundColor:theme.colors.activeColor
+                }}
                 containerStyle={{
-                    backgroundColor:theme.colors.backGround,
-                    height:50
+                    backgroundColor:theme.colors.activeColor,
+                    height:50,
+                    elevation:0,
                 }}
             />
         </View>

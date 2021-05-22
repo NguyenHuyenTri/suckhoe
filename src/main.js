@@ -14,6 +14,11 @@ import {
     CategoryScreen,
     CategoryNewScreen,
     DrugDetailsScreen,
+    BodyScreen,
+    ListBody,
+    Body,
+    WeatherScreen,
+    Weather,
 } from '../src/screens/export';
 import SkipButton from './components/SplashScreen/SkipButton';
 import StatusBar from './components/StatusBar/StatusBar'
@@ -46,13 +51,24 @@ function DrawerContent() {
                     onPress={() => setActive('second')}
                 />
             </Drawer.Section>
-
         </>
-
     );
 }
 
 function IntroScreen() {
+
+    const headerStyle = {
+        backgroundColor: theme.colors.appbar,
+        height: 60,
+    }
+
+    const headerTitleStyle = {
+        fontSize: 18,
+        color: theme.colors.activeColor,
+        elevation: 5,
+        fontFamily: 'HelveticaNeue',
+        fontWeight: 'bold'
+    }
 
     return (
         <>
@@ -122,82 +138,100 @@ function IntroScreen() {
                 <Stack.Screen name="HomeCovidScreen" options={{
                     headerShown: true,
                     title: 'Viêm đường hô hấp Covid-19',
-                    headerHideShadow: true,
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        color: theme.colors.text,
-                        elevation: 5,
-                        fontFamily: 'HelveticaNeue',
-                    },
-                    headerStyle: {
-                        backgroundColor: theme.colors.appbar,
-                        height: 50
-                    },
+                    headerHideShadow: false,
+                    headerTintColor: theme.colors.activeColor,
+                    headerTitleStyle: headerTitleStyle,
+                    headerStyle: headerStyle,
                 }} component={HomeCovidScreen} />
 
                 <Stack.Screen name="DrugScreen" options={{
                     headerShown: true,
                     title: 'Thuốc ',
                     headerHideShadow: true,
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        color: theme.colors.text,
-                        elevation: 5,
-                        fontFamily: 'HelveticaNeue',
-                    },
-                    headerStyle: {
-                        backgroundColor: theme.colors.appbar,
-                        height: 50
-                    },
+                    headerTintColor: theme.colors.activeColor,
+                    headerTitleStyle: headerTitleStyle,
+                    headerStyle: headerStyle,
                 }} component={DrugScreen} />
 
                 <Stack.Screen name="CategoryScreen" options={{
                     headerShown: true,
                     title: 'Bài viết',
                     headerHideShadow: true,
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        color: theme.colors.text,
-                        elevation: 5,
-                        fontFamily: 'HelveticaNeue',
-                    },
-                    headerStyle: {
-                        backgroundColor: theme.colors.appbar,
-                        height: 50
-                    },
+                    headerTintColor: theme.colors.activeColor,
+                    headerTintColor: theme.colors.activeColor,
+                    headerTitleStyle: headerTitleStyle,
+                    headerStyle: headerStyle,
                 }} component={CategoryScreen} />
 
                 <Stack.Screen name="CategoryNewScreen" options={{
                     headerShown: true,
                     title: 'Chi tiết',
                     headerHideShadow: true,
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        color: theme.colors.text,
-                        elevation: 5,
-                        fontFamily: 'HelveticaNeue',
-                    },
-                    headerStyle: {
-                        backgroundColor: theme.colors.appbar,
-                        height: 50
-                    },
+                    headerTintColor: theme.colors.activeColor,
+                    headerTitleStyle: headerTitleStyle,
+                    headerStyle: headerStyle,
                 }} component={CategoryNewScreen} />
 
                 <Stack.Screen name="DrugDetailsScreen" options={{
                     headerShown: true,
                     title: 'Chi tiết',
                     headerHideShadow: true,
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        color: theme.colors.text,
-                        elevation: 5,
-                        fontFamily: 'HelveticaNeue',
-                    },
-                    headerStyle: {
-                        backgroundColor: theme.colors.appbar,
-                        height: 50
-                    },
+                    headerTintColor: theme.colors.activeColor,
+                    headerTitleStyle: headerTitleStyle,
+                    headerStyle: headerStyle,
                 }} component={DrugDetailsScreen} />
+
+                <Stack.Screen name="BodyScreen" options={{
+                    headerShown: true,
+                    title: 'Bệnh theo vùng cơ thể',
+                    headerHideShadow: true,
+                    headerTintColor: theme.colors.activeColor,
+                    headerTitleStyle: headerTitleStyle,
+                    headerStyle: headerStyle,
+                }} component={BodyScreen} />
+
+                <Stack.Screen name="ListBody"
+                    options={(props) => ({
+                        headerShown: true,
+                        title: props.route.params.data,
+                        headerHideShadow: true,
+                        headerTintColor: theme.colors.activeColor,
+                        headerTitleStyle: headerTitleStyle,
+                        headerStyle: headerStyle,
+                    })} component={ListBody} />
+
+                <Stack.Screen name="Body"
+
+                    options={(props) => ({
+                        headerShown: true,
+                        title: props.route.params.data,
+                        headerHideShadow: true,
+                        headerTintColor: theme.colors.activeColor,
+                        headerTitleStyle: headerTitleStyle,
+                        headerStyle: headerStyle,
+                    })} component={Body} />
+
+                <Stack.Screen name="WeatherScreen"
+                    options={{
+                        headerShown: true,
+                        title: 'Bệnh theo mùa',
+                        headerHideShadow: true,
+                        headerTintColor: theme.colors.activeColor,
+                        headerTitleStyle: headerTitleStyle,
+                        headerStyle: headerStyle,
+                    }} component={WeatherScreen} />
+
+                <Stack.Screen name="Weather"
+
+                    options={(props) => ({
+                        headerShown: true,
+                        title: props.route.params.data,
+                        headerHideShadow: true,
+                        headerTintColor: theme.colors.activeColor,
+                        headerTitleStyle: headerTitleStyle,
+                        headerStyle: headerStyle,
+                    })} component={Weather} />
+
             </Stack.Navigator>
         </>
     );
@@ -223,9 +257,9 @@ function MyTabs() {
         <Tab.Navigator initialRouteName="Home"
             labeled={true}
             sceneAnimationEnabled={true}
-            activeColor={theme.home.icon}
-            inactiveColor={theme.home.textbottom}
-            barStyle={{ backgroundColor: theme.colors.appbar }}
+            activeColor={theme.colors.appbar}
+            inactiveColor={theme.colors.inActiveColor}
+            barStyle={{ backgroundColor: theme.colors.activeColor }}
         >
             <Tab.Screen name="Trang chủ" component={Home} options={{
                 tabBarLabel: 'Trang Chủ',
@@ -237,7 +271,7 @@ function MyTabs() {
                     />
                 ),
             }} />
-            <Tab.Screen name="Bài viết" component={ForgotPasswordScreen} options={{
+            <Tab.Screen name="Bài viết" component={CategoryScreen} options={{
                 tabBarLabel: 'Bài viết',
                 tabBarIcon: ({ color }) => (
                     <Icon
