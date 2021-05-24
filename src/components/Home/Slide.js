@@ -14,10 +14,6 @@ const ENTRIES1 = [
     {
         illustration: 'https://phuxuyen.hanoi.gov.vn/documents/1071288/5150708/08032020anhvirut1.jpg/3e544e68-9d36-4910-8565-8627f4c179c4?t=1583983959480',
     },
-
-    {
-        illustration: 'https://lh3.googleusercontent.com/proxy/PmrBOwH1ylEeTw1n25RcgG5AQcynEgtTklwVUvhQip5yUuU60HCjYpQUM9T6pSWYX_20XO1oRBIVns_N0V1aktsgDLS0hLFGCq9fDjWa6kgS',
-    },
     {
         illustration: 'https://file1.dangcongsan.vn/data/0/images/2020/07/30/tangndhcm/dsc3578-1.jpg?dpi=150&quality=100&w=680',
     },

@@ -97,6 +97,10 @@ const SecondRoute = () => {
                 const response = await result.json();
                 setData(response[response.length - 1]);
                 setDataLast(response[response.length - 2]);
+
+                const test = await fetch('http://192.168.0.105/doctortri/doctortri/public/api/medicines');
+                const reponsetest = await test.json();;
+                console.log(reponsetest)
             }
             catch (e) {
                 console.log(e)
