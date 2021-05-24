@@ -1,17 +1,19 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity,  } from 'react-native'
 import { theme } from '../../core/theme';
 
-import {drug} from '../../data/data'
-
 export default DrugCard = (props) => {
+
+    if(props.data===null){
+        return null;
+    }
     
     return (
-        <>
-            <View style={styles.root}>
+        <>  
+                <View style={styles.root}>
                 <FlatList
                     style={styles.boxList}
-                    data={drug}
+                    data={props.data}
                     keyExtractor={(item) => {
                         return item.id;
                     }}
@@ -29,12 +31,12 @@ export default DrugCard = (props) => {
                                     </View>
                                 </TouchableOpacity>
                                 {
-                                    item.id === data.length ?
+                                    item.id === props.data.length ?
                                         <View style={{ height: 20 }}>
                                         </View> : null
                                 }
-
                             </>
+                            
                         )
                     }} />
             </View>
@@ -47,7 +49,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     boxList: {
-        padding: 10,
+        paddingTop:10,
+        paddingHorizontal:10,
+        paddingBottom:30,
     },
     box: {
         paddingTop: 10,

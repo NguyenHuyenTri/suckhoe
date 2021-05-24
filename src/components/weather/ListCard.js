@@ -1,57 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, TouchableOpacity, View, Image, Text, FlatList } from 'react-native';
+import Loading from '../../components/body/Loading'
 
 export default ListCard = (props) => {
 
-    const data =
-        [
-            { id: 1, description: "Bệnh sâu răng" },
-            { id: 2, description: "Say nắng , say nóng" },
-            { id: 3, description: "Nhức đầu và đau nữa đầu" },
-            { id: 4, description: "Hen phế quản ở trẻ em" },
-            { id: 5, description: "Ngạt mũi và sổ mũi" },
-            { id: 6, description: "Bệnh cúm" },
-            { id: 7, description: "Hen" },
-            { id: 8, description: "Sởi" },
-            { id: 9, description: "Bệnh tay chân miệng" },
-            { id: 10, description: "Cảm cúm" },
-            { id: 11, description: "Bệnh mùa" },
-            { id: 12, description: "Đỏ mắt" },
-            { id: 13, description: "Bệnh giun kim" },
-            { id: 14, description: "Rối loạn trí nhớ" },
-            { id: 15, description: "Nhiễm giun lương" },
-            { id: 16, description: "Bệnh Lyme" },
-            { id: 17, description: "Xơ cứng rải rác" },
-            { id: 18, description: "Tiêu chảy do virut Rota" },
-            { id: 19, description: "Nói lắp" },
-            { id: 20, description: "Nấm họng" },
-            { id: 21, description: "Viêm não Nhật Bản" },
-            { id: 22, description: "Bệnh phổi kẽ" },
-        ]
+
+    const [data, setData] = useState()
+    const url = 'https://trinh.toolgencode.com/public/api/diseases';
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        if (data === undefined) {
+            fetchData();
+        }
+    }, [data===undefined])
+
+    const fetchData = async () => {
+        try {
+            const result = await fetch(url);
+            const response = await result.json();
+            setData(response)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    }
 
     return (
         <>
             <View style={styles.root}>
-                <FlatList
-                    data={data}
-                    keyExtractor={(item) => {
-                        return item.id;
-                    }}
-                    renderItem={({ item }) => {
-                        return (
-                            <TouchableOpacity style={styles.box} onPress={()=>props.navigation.navigate('Weather',{data:item.description})}>
-                                <View style={styles.boxImage}>
-                                    <Image style={styles.image} source={require('../../assets/screen/body/chuthapdo.png')}
-                                    />
-                                </View>
-                                <Text style={styles.text}>
-                                    {item.description}
-                                </Text>
-                            </TouchableOpacity>
-                        )
-                    }}
+                {
+                    loading ? <Loading /> :
+                        <FlatList
+                            data={data}
+                            keyExtractor={(item) => {
+                                return item.id;
+                            }}
+                            renderItem={({ item }) => {
+                                return (
+                                    <TouchableOpacity style={styles.box} onPress={() => props.navigation.navigate('Weather', item)}>
+                                        <View style={styles.boxImage}>
+                                            <Image style={styles.image} source={require('../../assets/screen/body/chuthapdo.png')}
+                                            />
+                                        </View>
+                                        <Text style={styles.text}>
+                                            {item.descriptions}
+                                        </Text>
+                                    </TouchableOpacity>
+                                )
+                            }}
 
-                />
+                        />
+                }
             </View>
         </>
     )

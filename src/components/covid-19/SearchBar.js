@@ -2,15 +2,26 @@ import React from 'react'
 import { StyleSheet, View ,Text } from 'react-native'
 import { SearchBar, } from 'react-native-elements';
 import { theme } from '../../core/theme'
-const Search = () => {
+const Search = (props) => {
 
+    const { handleCancel ,handleChangeSearch } = props;
     const [state, setState] = React.useState('');
+
+    const cancelText =(value) =>{
+        setState(value)
+        handleCancel();
+    }
+    const  changeText = (value) => {
+        setState(value);
+        handleChangeSearch(value);
+    }
+
     return (
         <View keyboardShouldPersistTaps="handled">
             <SearchBar
                 round
-                onChangeText={(text) => setState(text)}
-                onClear={(text) => setState(text)}
+                onChangeText={(text) => changeText(text)}
+                onClear={(text) => cancelText(text)}
                 value={state}
                 clearIcon={true}
                 placeholder="Tìm kiếm..."

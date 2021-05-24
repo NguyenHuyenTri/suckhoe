@@ -24,19 +24,19 @@ const Drug = (props) => {
                     <Text style={styles.summaryText}>Loại: {data.ten}</Text>
                     <Text style={styles.summaryText}>Giá bán: {data.giaTien} VNĐ</Text>
                     <Text style={styles.tieudeText}>Đóng gói:</Text>
-                    <Text style={styles.contentText}>{data.thongtin.donggoi}</Text>
+                    <Text style={styles.contentText}>{data.dongGoi}</Text>
                     <Text style={styles.tieudeText}>Thành phần:</Text>
-                    <Text style={styles.contentText}>{data.thongtin.thanhphan}</Text>
+                    <Text style={styles.contentText}>{data.thanhPhan}</Text>
                     <Text style={styles.tieudeText}>Công dụng:</Text>
                     <Text style={styles.contentText}>{data.chucNang}</Text>
                     <Text style={styles.tieudeText}>Đối tượng sử dụng:</Text>
                     <Text style={styles.contentText}>{data.lieuDung}</Text>
                     <Text style={styles.tieudeText}>Bảo quản:</Text>
-                    <Text style={styles.contentText}>{data.baoquan}</Text>
+                    <Text style={styles.contentText}>{data.baoQuan}</Text>
                     <Text style={styles.tieudeText}>Nhà sản xuất: </Text>
-                    <Text style={styles.contentText}>{data.thongtin.nhaSx}</Text>
+                    <Text style={styles.contentText}>{data.nhaSanXuat}</Text>
                     <Text style={styles.tieudeText}>Sản xuất tại:</Text>
-                    <Text style={styles.contentText}>{data.thongtin.xuatxu}</Text>
+                    <Text style={styles.contentText}>{data.xuatXu}</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>

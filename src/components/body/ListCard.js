@@ -1,23 +1,8 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { StyleSheet, TouchableOpacity, View, Image, Text, FlatList } from 'react-native';
-
+import {body} from '../../data/data'
 export default ListCard = (props) => {
-
-    const data =
-        [
-            { id: 1, description: "Thoát vị đĩa đệm" },
-            { id: 2, description: "Viêm đường hô hấp cấp trên" },
-            { id: 3, description: "Thoái hóa cột sống cổ" },
-            { id: 4, description: "Gai cột sống" },
-            { id: 5, description: "Viêm Amidan" },
-            { id: 6, description: "Viêm  họng" },
-            { id: 7, description: "Ho" },
-            { id: 8, description: "Barret thực quản" },
-            { id: 9, description: "Basedow" },
-            { id: 10, description: "Đau nhức toàn thân" },
-            { id: 11, description: "Suy cận giáp" },
-        ]
-
+    const {data} = props;
     return (
         <>
             <View style={styles.root}>
@@ -28,18 +13,17 @@ export default ListCard = (props) => {
                     }}
                     renderItem={({ item }) => {
                         return (
-                            <TouchableOpacity style={styles.box} onPress={()=>props.navigation.navigate('Body',{data:item.description})}>
+                            <TouchableOpacity style={styles.box} onPress={()=>props.navigation.navigate('Body',item)}>
                                 <View style={styles.boxImage}>
                                     <Image style={styles.image} source={require('../../assets/screen/body/chuthapdo.png')}
                                     />
                                 </View>
                                 <Text style={styles.text}>
-                                    {item.description}
+                                    {item.discriptions}
                                 </Text>
                             </TouchableOpacity>
                         )
                     }}
-
                 />
             </View>
         </>

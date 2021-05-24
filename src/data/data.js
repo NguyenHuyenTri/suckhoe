@@ -207,5 +207,22 @@ const drug = [
 ]
 
 
-export {drug};
+const body = [
+    [
+        { id: 1, description: "Thoát vị đĩa đệm" },
+        { id: 2, description: "Viêm đường hô hấp cấp trên" },
+        { id: 3, description: "Thoái hóa cột sống cổ" },
+        { id: 4, description: "Gai cột sống" },
+        { id: 5, description: "Viêm Amidan" },
+        { id: 6, description: "Viêm  họng" },
+        { id: 7, description: "Ho" },
+        { id: 8, description: "Barret thực quản" },
+        { id: 9, description: "Basedow" },
+        { id: 10, description: "Đau nhức toàn thân" },
+        { id: 11, description: "Suy cận giáp" },
+    ]
+]
+
+
+export {drug,body};
 

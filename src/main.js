@@ -193,7 +193,7 @@ function IntroScreen() {
                 <Stack.Screen name="ListBody"
                     options={(props) => ({
                         headerShown: true,
-                        title: props.route.params.data,
+                        title:props.route.params.name,
                         headerHideShadow: true,
                         headerTintColor: theme.colors.activeColor,
                         headerTitleStyle: headerTitleStyle,
@@ -204,7 +204,7 @@ function IntroScreen() {
 
                     options={(props) => ({
                         headerShown: true,
-                        title: props.route.params.data,
+                        title: props.route.params.discriptions,
                         headerHideShadow: true,
                         headerTintColor: theme.colors.activeColor,
                         headerTitleStyle: headerTitleStyle,
@@ -225,7 +225,7 @@ function IntroScreen() {
 
                     options={(props) => ({
                         headerShown: true,
-                        title: props.route.params.data,
+                        title: props.route.params.descriptions,
                         headerHideShadow: true,
                         headerTintColor: theme.colors.activeColor,
                         headerTitleStyle: headerTitleStyle,
