@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, TouchableOpacity, View, Image, Text, FlatList } from 'react-native';
 import Loading from '../../components/body/Loading'
+import { useSelector, useDispatch } from "react-redux";
+import { get as _get } from 'lodash';
+import {GetAllDiseaseRequest} from '../../reducer/Disease/DiseaseAction'
 
 export default ListCard = (props) => {
 
-
-    const [data, setData] = useState()
-    const url = 'https://trinh.toolgencode.com/public/api/diseases';
-    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
+    const disease = useSelector((state) => _get(state, "disease.diseases", []));
+   
     useEffect(() => {
-        if (data === undefined) {
-            fetchData();
+        if (disease.length === 0) {
+            dispatch(GetAllDiseaseRequest());
         }
-    }, [data===undefined])
-
-    const fetchData = async () => {
-        try {
-            const result = await fetch(url);
-            const response = await result.json();
-            setData(response)
-            setLoading(false)
-        } catch (error) {
-            setLoading(false)
-        }
-    }
+    }, [])
 
     return (
         <>
             <View style={styles.root}>
                 {
-                    loading ? <Loading /> :
+                    disease.length === 0 ? <Loading /> :
                         <FlatList
-                            data={data}
+                            data={disease}
                             keyExtractor={(item) => {
                                 return item.id;
                             }}

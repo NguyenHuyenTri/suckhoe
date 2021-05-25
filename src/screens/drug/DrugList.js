@@ -1,59 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import {  StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBar from '../../components/covid-19/SearchBar';
 import DrugCard from '../../components/drug/CardDrug';
 import Loading from '../../components/body/Loading'
+import { useSelector, useDispatch } from "react-redux";
+import { get as _get } from 'lodash';
+import { GetAllDrugRequest } from '../../reducer/Drug/DrugAction';
 
 const DrugList = ({ navigation }) => {
 
-    const url = 'https://trinh.toolgencode.com/public/api/medicines';
-    const [data, setData] = useState();
-    const [tempData,setTempData]=useState();
-    const [loading,setLoading] = useState(true);
+    const dispatch = useDispatch();
+    const drug = useSelector((state) => _get(state, "drug.drugs", []));
+
+    const [data, setData] = useState(drug);
+    const [tempData, setTempData] = useState();
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        if(tempData===undefined){
+        setData(drug);
+        setTempData(drug);
+    }, [drug])
+
+    useEffect(() => {
+        if (drug.length === 0) {
             fetchDrugData();
         }
-    }, [data === undefined && tempData ===undefined])
+    }, [])
 
     const fetchDrugData = async () => {
         try {
-            const result = await fetch(url);
-            const response = await result.json();
-            setData(response)
-            setTempData(response);
-            setLoading(false)
+            dispatch(GetAllDrugRequest());
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000);
         } catch (error) {
             setLoading(false)
         }
     }
 
-    const handleChangeSearch=(value)=>{
+    const handleChangeSearch = (value) => {
         const changeDate = [];
-        if(tempData!=null){
-            tempData.map((item,index)=>{
-                if(to_slug(item.ten).indexOf(to_slug(value))>-1){
+        if (tempData != null) {
+            tempData.map((item, index) => {
+                if (to_slug(item.ten).indexOf(to_slug(value)) > -1) {
                     changeDate.push(item)
                 }
             })
         }
-        if(changeDate.length>0){
+        if (changeDate.length > 0) {
             setData(changeDate);
-        }else if(value.length===0){
+        } else if (value.length === 0) {
             setData(tempData)
         }
     }
-    const handleCancel = ()=>{
+    const handleCancel = () => {
         setData(tempData);
     }
 
     return (
-        <SafeAreaView style={styles.root}>
+        <SafeAreaView style={styles.root} >
             {
-                loading ? <Loading/> :
+                loading && drug.length === 0 ? <Loading /> :
                     <>
-                        <SearchBar  handleChangeSearch={handleChangeSearch} handleCancel={handleCancel} />
+                        <SearchBar handleChangeSearch={handleChangeSearch} handleCancel={handleCancel} />
                         <DrugCard data={data} navigation={navigation} />
                     </>
             }

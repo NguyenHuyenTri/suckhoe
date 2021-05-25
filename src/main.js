@@ -19,6 +19,7 @@ import {
     Body,
     WeatherScreen,
     Weather,
+    LoginScreen,
 } from '../src/screens/export';
 import SkipButton from './components/SplashScreen/SkipButton';
 import StatusBar from './components/StatusBar/StatusBar'
@@ -26,7 +27,7 @@ import StatusBar from './components/StatusBar/StatusBar'
 import { theme } from './core/theme'
 import { Drawer } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import { Image } from 'react-native'
 
 const DrawerPage = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -39,14 +40,22 @@ function DrawerContent() {
     return (
         <>
             <StatusBar />
-            <Drawer.Section title="Some title" style={{ flex: 1, }}>
+            <Drawer.Section>
+            <Image
+                source={require('./assets/anhbia.jpg')}
+                size={60}
+                style={{ alignItems: 'center', justifyContent: 'center',
+                 height: 150, width: '100%', backgroundColor: 'white' }}
+            />
+            </Drawer.Section>
+            <Drawer.Section title='Đông Á' style={{ flex: 1, }}>
                 <Drawer.Item
-                    label="First Item"
+                    label="Báo lỗi"
                     active={active === 'first'}
                     onPress={() => setActive('first')}
                 />
                 <Drawer.Item
-                    label="Second Item"
+                    label="Góp ý"
                     active={active === 'second'}
                     onPress={() => setActive('second')}
                 />
@@ -193,7 +202,7 @@ function IntroScreen() {
                 <Stack.Screen name="ListBody"
                     options={(props) => ({
                         headerShown: true,
-                        title:props.route.params.name,
+                        title: props.route.params.name,
                         headerHideShadow: true,
                         headerTintColor: theme.colors.activeColor,
                         headerTitleStyle: headerTitleStyle,
@@ -281,7 +290,7 @@ function MyTabs() {
                     />
                 ),
             }} />
-            <Tab.Screen name="Thông tin" component={ForgotPasswordScreen} options={{
+            <Tab.Screen name="Thông tin" component={LoginScreen} options={{
                 tabBarLabel: 'Thông tin',
                 tabBarIcon: ({ color }) => (
                     <Icon

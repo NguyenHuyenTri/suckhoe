@@ -4,8 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {theme} from '../../core/theme'
 const Icons = (props) => {
 
-    console.log(props.navigate)
-
      return (
         <TouchableOpacity style={[styles.container, {backgroundColor: props.bgColor}]} 
         onPress={()=>props.navigation.navigate(`${props.navigate}`)}>

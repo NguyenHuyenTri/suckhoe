@@ -11,10 +11,23 @@ import Header from '../../components/Home/Headers';
 import Icons from '../../components/Home/Icons';
 import { theme } from '../../core/theme';
 import Slide from '../../components/Home/Slide'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({ navigation }) => {
 
+    useEffect(() => {
+        storeData({skip:true})
+    }, [])
 
+    const storeData = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value)
+          await AsyncStorage.setItem('@storage_Key', jsonValue)
+        } catch (e) {
+            alert('Lỗi')
+        }
+      }
+    
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#fff" barStyle="dark-content" />

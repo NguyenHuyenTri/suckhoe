@@ -34,10 +34,8 @@ const LoginScreen =({ navigation })=> {
 
         <BackButton props={{goBack}} />
             <Background>
-
                 <View style={styles.container}>
-                    <Logo />
-                    <Header>Welcome back.</Header>
+                    <Header>Welcome</Header>
                     <TextInput
                         label="Email"
                         returnKeyType="next"

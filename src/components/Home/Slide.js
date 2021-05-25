@@ -6,28 +6,13 @@ import {
     StyleSheet,
     Platform,
 } from 'react-native';
-
-
+import { useSelector} from "react-redux";
+import { get as _get } from 'lodash';
 const { width: screenWidth } = Dimensions.get('window');
 
 const MyCarousel = props => {
-    const [entries, setEntries] = useState([]);
+    const slides = useSelector((state) => _get(state, "slide.slides", []));
     const carouselRef = useRef(null);
-    const url = 'https://trinh.toolgencode.com/public/api/slides';
-
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    const fetchData = async () => {
-        try {
-            const result = await fetch(url);
-            const response = await result.json();
-            setEntries(response);
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const renderItem = ({ item, index }, parallaxProps) => {
         return (
@@ -50,7 +35,7 @@ const MyCarousel = props => {
                 sliderWidth={screenWidth}
                 sliderHeight={270}
                 itemWidth={screenWidth - 60}
-                data={entries}
+                data={slides}
                 renderItem={renderItem}
                 hasParallaxImages={true}
             />
