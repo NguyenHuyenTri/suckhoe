@@ -20,8 +20,8 @@ const Drug = (props) => {
                 />
                 </View>
                 <View style={styles.viewNews}>
-                    <Text style={styles.titleText}>{data.loai}</Text>
-                    <Text style={styles.summaryText}>Loại: {data.ten}</Text>
+                    <Text style={styles.titleText}>{data.ten}</Text>
+                    <Text style={styles.summaryText}>Loại: {data.loai}</Text>
                     <Text style={styles.summaryText}>Giá bán: {data.giaTien} VNĐ</Text>
                     <Text style={styles.tieudeText}>Đóng gói:</Text>
                     <Text style={styles.contentText}>{data.dongGoi}</Text>
