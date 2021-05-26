@@ -27,3 +27,6 @@ export {default as Body} from './body/Body';
 
 export {default as WeatherScreen} from './weather/WeatherScreen';
 export {default as Weather} from './weather/Weather';
+
+
+export {default as QrCodeScreen} from './qrcode/QrCodeScreen'

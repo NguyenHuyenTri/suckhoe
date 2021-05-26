@@ -20,6 +20,7 @@ import {
     WeatherScreen,
     Weather,
     LoginScreen,
+    QrCodeScreen,
 } from '../src/screens/export';
 import SkipButton from './components/SplashScreen/SkipButton';
 import StatusBar from './components/StatusBar/StatusBar'
@@ -290,11 +291,11 @@ function MyTabs() {
                     />
                 ),
             }} />
-            <Tab.Screen name="Thông tin" component={LoginScreen} options={{
-                tabBarLabel: 'Thông tin',
+            <Tab.Screen name="Quét mã QR" component={QrCodeScreen} options={{
+                tabBarLabel: 'Quét QR',
                 tabBarIcon: ({ color }) => (
                     <Icon
-                        name="sliders-h"
+                        name="barcode"
                         color={color}
                         size={20}
                     />
