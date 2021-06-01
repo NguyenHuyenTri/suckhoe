@@ -131,6 +131,7 @@ function IntroScreen() {
                     name="Tips3"
                     component={Tips3}
                     options={({ navigation }) => ({
+                        mode: 'screen',
                         headerLeft: () => (
                             <SkipButton text='Bước trước' onClick={() => navigation.navigate('Tips2')} />
                         ),
@@ -292,7 +293,7 @@ function MyTabs() {
                 ),
             }} />
             <Tab.Screen name="Quét mã QR" component={QrCodeScreen} options={{
-                tabBarLabel: 'Quét QR',
+                tabBarLabel: 'Quét mã',
                 tabBarIcon: ({ color }) => (
                     <Icon
                         name="barcode"

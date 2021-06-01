@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
+import { theme } from '../../core/theme';
 
 export const DotBold = () => {
      return (
@@ -18,14 +19,14 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.04,
         height: Dimensions.get('window').width * 0.04,
         borderRadius: Dimensions.get('window').width * 0.04 / 2,
-        backgroundColor: '#F5AD47',
+        backgroundColor: theme.colors.appbar,
         marginHorizontal: '2%'
     },
     dotLight: {
         width: Dimensions.get('window').width * 0.03,
         height: Dimensions.get('window').width * 0.03,
         borderRadius: Dimensions.get('window').width * 0.03 / 2,
-        backgroundColor: '#F5AD47',
+        backgroundColor: theme.colors.appbar,
         marginHorizontal: '2%',
         marginVertical: '0.5%'
     }

@@ -1,13 +1,14 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     TouchableOpacity,
     Linking,
     Dimensions,
     Image,
-    Alert
+    Alert,
+    View
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -26,6 +27,7 @@ function QrCodeScan({ navigation }) {
     const drug = useSelector((state) => _get(state, "drug.drugs", []));
 
     const onSuccess = e => {
+        console.log(e)
         setscan(false);
         if (Number.isInteger(parseInt(e.data)) === true) {
             let temp = false;
@@ -39,8 +41,8 @@ function QrCodeScan({ navigation }) {
             }
             if (!temp) {
                 Alert.alert(
-                    "Thông báo",
-                    `Không tìm thấy ${e.data}`,
+                    "Không tìm thấy dữ liệu cần sử dụng",
+                    `Mã vạch : ${e.data}`,
                     [
                         {
                             text: "Đóng",
@@ -71,6 +73,7 @@ function QrCodeScan({ navigation }) {
         setscan(true)
     };
 
+
     React.useEffect(() => {
         dispatch(GetAllDrugRequest());
     }, [])
@@ -83,18 +86,20 @@ function QrCodeScan({ navigation }) {
                     style={{ width: 30, height: 30 }}
                 />
             </TouchableOpacity>
-            <QRCodeScanner style={{ flex: 1 }}
+            <View>
+            <QRCodeScanner style={{ flex: 1 }} 
                 onRead={onSuccess}
                 reactivate={scan}
                 fadeIn={false}
                 cameraType={state ? 'front' : 'back'}
                 permissionDialogMessage={'Cần sự cho phép để truy cập máy ảnh'}
                 reactivateTimeout={1000}
-                showMarker={true}
+                // showMarker={true}
                 containerStyle={{ backgroundColor: '#FFFFFF' }}
                 markerStyle={{ borderColor: theme.colors.inActiveColor, borderRadius: 10, marginBottom: '25%' }}
                 cameraStyle={{ width: windowWidth, alignSelf: 'center', height: windowHeight - 50 }}
             />
+            </View>
         </>
     );
 }

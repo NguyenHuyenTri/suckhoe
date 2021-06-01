@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native';
+import { theme } from '../../core/theme';
 
 const Name = props => {
      return (
@@ -13,15 +14,15 @@ const styles = StyleSheet.create({
     container: {
         width: '50%',
         height: '9%',
-        backgroundColor: '#F5AD47',
-        borderRadius: 25,
+        backgroundColor: theme.colors.appbar,
+        borderRadius: 30,
         marginVertical: '5%',
         justifyContent: 'center',
         alignItems: 'center'
     },
     title: {
         fontSize: 18,
-        color: '#FFF',
+        color: 'white',
         fontFamily: 'HelveticaNeue'
     }
 });

@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import StatusBars from '../StatusBar/StatusBar';
-
+import {theme} from '../../core/theme'
 type Props = {
   children: React.ReactNode;
 };
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: '100%',
-    backgroundColor:'#FFB400',
+    backgroundColor:'white',
   },
   container: {
     flex: 1,

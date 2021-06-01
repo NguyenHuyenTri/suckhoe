@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native';
+import { theme } from '../../core/theme';
 
 const SkipButton = props => {
      return (
@@ -13,14 +14,17 @@ const SkipButton = props => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFF',
-        borderRadius: 15,
-        padding: 7,
-        marginHorizontal: 10
+        marginTop:10,
+        backgroundColor: theme.colors.appbar,
+        borderRadius: 50,
+        paddingHorizontal:20,
+        paddingVertical:10,
+        marginHorizontal: 10,
     },
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color:'white'
     }
 });
 

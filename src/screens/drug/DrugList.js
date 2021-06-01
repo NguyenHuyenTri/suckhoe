@@ -42,8 +42,8 @@ const DrugList = ({ navigation }) => {
     const handleChangeSearch = (value) => {
         const changeDate = [];
         if (tempData != null) {
-            tempData.map((item, index) => {
-                if (to_slug(item.ten).indexOf(to_slug(value)) > -1) {
+            tempData.map((item) => {
+                if (to_slug(item.ten).indexOf(to_slug(value)) > -1||to_slug(item.loai).indexOf(to_slug(value)) > -1) {
                     changeDate.push(item)
                 }
             })
