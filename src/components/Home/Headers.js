@@ -21,11 +21,10 @@ const CustomHeader = () => {
     return (
         <View style={{alignItems:'center',alignContent:'center',flexDirection:'row'}}>
                 <Image style={{ height: 30, width: 30 }} source={require('../../assets/appsuckhoe.png')} />
-                <Text style={styles.headerTitle}>Đông Á</Text>
+                <Text style={styles.headerTitle}>Sức khỏe</Text>
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     headerContainer: {

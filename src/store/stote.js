@@ -6,6 +6,8 @@ import BodyReducer from '../reducer/Body/BodyReducer';
 import CategoryReducer from '../reducer/Category/CategoryReducer';
 import DiseaseReducer from '../reducer/Disease/DiseaseReducer';
 import SlideReducer from '../reducer/Slides/SlideReducer'
+import CovidVietNamReducer from '../reducer/CovidVietNam/CovidVietNamReducer';
+import CovidWorldReducer from '../reducer/CovidWorld/CovidWorldReducer'
 
 const store = createStore( 
     combineReducers({ 
@@ -14,6 +16,8 @@ const store = createStore(
         slide:SlideReducer,
         category:CategoryReducer,
         disease:DiseaseReducer,
+        covidworld:CovidWorldReducer,
+        covidvn:CovidVietNamReducer,
     }),applyMiddleware(thunk) 
   );
 

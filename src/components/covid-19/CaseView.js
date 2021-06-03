@@ -51,18 +51,17 @@ const styles = StyleSheet.create({
         marginLeft: 6,
     },
     num: {
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: '500',
     },
     left: {
-        flex: 2,
+        width:'60%',
         justifyContent: 'center',
         marginLeft: 20,
     },
     right: {
-        flex: 1,
+        width:'40%',
     },
-
     itemRight: {
         flexDirection: 'row',
         marginTop: 10,

@@ -2,51 +2,34 @@ import React, { memo, useState, useEffect } from 'react';
 import {
     View,
     StyleSheet,
-    Text, ScrollView, useWindowDimensions
+    Text, useWindowDimensions, ScrollView, SafeAreaView,
 } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
 import 'moment/locale/vi';
-
-import { TabView, SceneMap, TabBar} from 'react-native-tab-view';
-
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import ItemRows from '../../components/covid-19/ItemRows';
 import ChartView from '../../components/covid-19/ChartView';
 import CaseView from '../../components/covid-19/CaseView';
 import { theme } from '../../core/theme';
+import { get as _get } from 'lodash';
+
+import Loading from '../../components/body/Loading'
+import { useSelector, useDispatch } from "react-redux";
+import { GetCovidVietNamRequest } from '../../reducer/CovidVietNam/CovidVietNamAction';
+import { GetAllCovidWorldRequest } from '../../reducer/CovidWorld/CovidWorldAction';
 
 const HomeCovidScreen = ({ navigation }) => {
     const layout = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
 
     const [routes] = React.useState([
-        { key: 'first', title: 'Thế giới' },
-        { key: 'second', title: 'Việt Nam' },
+        { key: 'first', title: 'Việt Nam' },
+        { key: 'second', title: 'Thế giới' },
     ]);
 
-    _renderTabBar = (props) => {
-        const inputRange = props.navigationState.routes.map((x, i) => i);
-    
-        return (
-          <View style={styles.tabBar}>
-            {props.navigationState.routes.map((route, i) => {
-              const opacity = props.position.interpolate({
-                inputRange,
-                outputRange: inputRange.map((inputIndex) =>
-                  inputIndex === i ? 1 : 0.5
-                ),
-              });
-    
-              return (
-                <TouchableOpacity
-                  style={styles.tabItem}
-                  onPress={() => this.setState({ index: i })}>
-                  <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        );
-      };
-
+  
     const renderScene = SceneMap({
         first: FirstRoute,
         second: SecondRoute,
@@ -54,14 +37,17 @@ const HomeCovidScreen = ({ navigation }) => {
 
     const renderTabBar = props => (
         <TabBar
-          {...props}
-          indicatorStyle={{ backgroundColor: theme.home.icon ,height:4}}
-          style={{ backgroundColor: theme.colors.activeColor,  elevation: 0,
-          shadowOpacity: 0 , borderColor: 'none'}}
-          activeColor={theme.colors.appbar}
-          inactiveColor={theme.colors.text}
+            {...props}
+            indicatorStyle={{ backgroundColor: theme.home.icon, height: 4 }}
+            style={{
+                backgroundColor: theme.colors.activeColor, elevation: 0,
+                shadowOpacity: 0, borderColor: 'none'
+            }}
+            activeColor={theme.colors.appbar}
+            inactiveColor={theme.colors.text}
+            pressColor={'white'}
         />
-      );
+    );
 
     return (
         <>
@@ -76,12 +62,11 @@ const HomeCovidScreen = ({ navigation }) => {
     )
 }
 
-const SecondRoute = () => {
+const FirstRoute = () => {
 
     const [dateTime, setDateTime] = useState(new Date());
-    const url = 'https://api.covid19api.com/total/country/vn'
-    const [data, setData] = useState();
-    const [dataLast,setDataLast] = useState();
+    const dispatch = useDispatch();
+    const covidvietnam = useSelector((state) => _get(state, "covidvn.covidvietnams", []));
 
     useEffect(() => {
         const id = setInterval(() => setDateTime(new Date()), 60000);
@@ -91,22 +76,7 @@ const SecondRoute = () => {
     }, []);
 
     useEffect(() => {
-        const fetchCovidData = async () => {
-            try {
-                const result = await fetch(url);
-                const response = await result.json();
-                setData(response[response.length - 1]);
-                setDataLast(response[response.length - 2]);
-
-                const test = await fetch('http://192.168.0.105/doctortri/doctortri/public/api/medicines');
-                const reponsetest = await test.json();;
-                console.log(reponsetest)
-            }
-            catch (e) {
-                console.log(e)
-            }
-        }
-        fetchCovidData();
+        dispatch(GetCovidVietNamRequest());
     }, []);
 
 
@@ -116,50 +86,53 @@ const SecondRoute = () => {
     function jsUcfirst(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
 
     return (
         <>
-          <ScrollView style={styles.container} >
-          <View>
-                <Text style={styles.headerDate}>{convertTime(dateTime, 'LLLL')}</Text>
-                <Text style={styles.headerTitle}>Ca nhiễm vi-rút corona Việt Nam</Text>
-                <Text style={styles.headerNumber}>{data ? numberWithCommas(data.Confirmed) : 0}</Text>
-            </View>
-            <View style={styles.chartContainer}>
-                <ChartView title="Tử vong" num={data ? numberWithCommas(data.Deaths) : 0} color="#E35757"
-                    arrownum={data && dataLast ? numberWithCommas(data.Deaths-dataLast.Deaths) : 0} />
-                <ChartView title="Bình phục" num={data && dataLast ? numberWithCommas(data.Recovered) : 0} color="#6AB276"
-                    arrownum={data && dataLast ? numberWithCommas(data.Active-dataLast.Active) : 0}
-                />
-            </View>
-            <View style={styles.caseContainer}>
-                <CaseView title='Đang điều trị'
-                    case={data ? numberWithCommas(data.Active) : 0}
-                    nguykich={data ? numberWithCommas(0) : 0}
-                    canhiem={data && dataLast ? numberWithCommas(data.Confirmed-dataLast.Confirmed) : 0}
-                />
-                <View style={{ height: 10 }} />
-            </View>
-            <View style={{ height: 30 }}>
-            </View>
-          </ScrollView>
+            {
+                covidvietnam.length === 0 ? <Loading /> :
+                    <ScrollView style={styles.container} >
+                        <View>
+                            <Text style={styles.headerDate}>{convertTime(dateTime, 'LLLL')}</Text>
+                            <Text style={styles.headerTitle}>Ca nhiễm vi-rút corona Việt Nam</Text>
+                            <Text style={styles.headerNumber}>{covidvietnam ? numberWithCommas(covidvietnam.cases) : 0}</Text>
+                        </View>
+                        <View style={styles.chartContainer}>
+                            <ChartView title="Tử vong" num={covidvietnam ? numberWithCommas(covidvietnam.deaths) : 0} color="#E35757"
+                                arrownum={covidvietnam ? numberWithCommas(covidvietnam.todayDeaths) : 0} />
+                            <ChartView title="Bình phục" num={covidvietnam ? numberWithCommas(covidvietnam.recovered) : 0} color="#6AB276"
+                                arrownum={covidvietnam ? numberWithCommas(covidvietnam.todayRecovered) : 0}
+                            />
+                        </View>
+
+                        <View style={styles.caseContainer} >
+                            <CaseView title='Đang điều trị'
+                                case={covidvietnam ? numberWithCommas(covidvietnam.active) : 0}
+                                nguykich={covidvietnam ? numberWithCommas(covidvietnam.critical) : 0}
+                                canhiem={covidvietnam ? numberWithCommas(covidvietnam.todayCases) : 0}
+                            />
+                            <View style={{ height: 10 }} />
+                        </View>
+                        <View style={{ height: 30 }}>
+                        </View>
+                    </ScrollView>
+            }
         </>
     )
-   
+
 };
 
-const FirstRoute = () => {
+const SecondRoute = () => {
+
+    const dispatch = useDispatch();
+    const covidworld = useSelector((state) => _get(state, "covidworld.covidworlds", []));
+    const covidcountrys = useSelector((state) => _get(state, "covidworld.covidcountrys", []));
+    const [isLoading, setIsLoading] = useState(true);
 
     const [dateTime, setDateTime] = useState(new Date());
-
-    const url = "https://disease.sh/v3/covid-19/all";
-  
-    const [data, setData] = useState();
-
     useEffect(() => {
         const id = setInterval(() => setDateTime(new Date()), 60000);
         return () => {
@@ -168,19 +141,15 @@ const FirstRoute = () => {
     }, []);
 
     useEffect(() => {
-        const fetchCovidData = async () => {
-            try {
-                const result = await fetch(url);
-                const response = await result.json();
-                setData(response)
-                
-            }
-            catch (e) {
-                console.log(e)
-            }
-        }
-        fetchCovidData(); 
-    }, []);
+        dispatch(GetAllCovidWorldRequest());
+
+    }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    }, [])
 
     const convertTime = (time, formatType) => {
         return jsUcfirst(moment(time).format(formatType));
@@ -192,32 +161,67 @@ const FirstRoute = () => {
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
-    return <>
-        <ScrollView style={styles.container} >
-            <View>
-                <Text style={styles.headerDate}>{convertTime(dateTime, 'LLLL')}</Text>
-                <Text style={styles.headerTitle}>Ca nhiễm vi-rút corona thế giới</Text>
-                <Text style={styles.headerNumber}>{data ? numberWithCommas(data.cases) : 0}</Text>
-            </View>
-            <View style={styles.chartContainer}>
-                <ChartView title="Tử vong" num={data ? numberWithCommas(data.deaths) : 0} color="#E35757"
-                    arrownum={data ? numberWithCommas(data.todayDeaths) : 0} />
-                <ChartView title="Bình phục" num={data ? numberWithCommas(data.recovered) : 0} color="#6AB276"
-                    arrownum={data ? numberWithCommas(data.todayRecovered) : 0}
-                />
-            </View>
 
-            <View style={styles.caseContainer}>
-                <CaseView title='Đang điều trị'
-                    case={data ? numberWithCommas(data.active) : 0}
-                    nguykich={data ? numberWithCommas(data.critical) : 0}
-                    canhiem={data ? numberWithCommas(data.todayCases) : 0}
-                />
-                <View style={{ height: 10 }} />
-            </View>
-            <View style={{ height: 30 }}>
-            </View>
-        </ScrollView>
+    return <>
+        {
+            covidworld.length === 0 ? <Loading /> :
+                <ScrollView style={styles.container} horizontal={false}  >
+                    <View>
+                        <Text style={styles.headerDate}>{convertTime(dateTime, 'LLLL')}</Text>
+                        <Text style={styles.headerTitle}>Ca nhiễm vi-rút corona thế giới</Text>
+                        <Text style={styles.headerNumber}>{covidworld ? numberWithCommas(covidworld.cases) : 0}</Text>
+                    </View>
+                    <View style={styles.chartContainer}>
+                        <ChartView title="Tử vong" num={covidworld ? numberWithCommas(covidworld.deaths) : 0} color="#E35757"
+                            arrownum={covidworld ? numberWithCommas(covidworld.todayDeaths) : 0} />
+                        <ChartView title="Bình phục" num={covidworld ? numberWithCommas(covidworld.recovered) : 0} color="#6AB276"
+                            arrownum={covidworld ? numberWithCommas(covidworld.todayRecovered) : 0}
+                        />
+                    </View>
+
+                    <View style={styles.caseContainer} >
+                        <CaseView title='Đang điều trị'
+                            case={covidworld ? numberWithCommas(covidworld.active) : 0}
+                            nguykich={covidworld ? numberWithCommas(covidworld.critical) : 0}
+                            canhiem={covidworld ? numberWithCommas(covidworld.todayCases) : 0}
+                        />
+                        <View style={{ height: 10 }} />
+                    </View>
+
+                    {
+                        covidcountrys.length > 0 || !isLoading ?
+
+                            <ScrollView horizontal={true}
+                                contentContainerStyle={{
+                                    flex: 1, flexDirection: 'column', height: 400,
+                                    backgroundColor: '#FFFFFF'
+                                }}>
+                                <Text style={{ padding: 10, textAlign: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 'bold' }} >Số ca nhiễm theo quốc gia</Text>
+                                <View style={{
+                                    flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 5,
+                                    alignItems: 'center', marginBottom: 10, borderBottomColor: theme.colors.backGround, borderWidth: 2,
+                                    borderTopColor: 'white', borderLeftColor: 'white', borderRightColor: 'white',
+                                }}>
+
+                                    <Text style={{ fontSize: 15, color: '#E35757' }}>⬤ Nhiễm bệnh</Text>
+                                    <Text style={{ fontSize: 15, color: '#6AB276' }}>⬤ Bình phục</Text>
+                                    <Text style={{ fontSize: 15, color: '#BDBDBD' }}>⬤ Tử vong</Text>
+                                </View>
+                                <FlatList
+                                    data={covidcountrys.length > 0 ? covidcountrys.sort((a, b) => (a.cases < b.cases) ? 1 : ((b.cases < a.cases) ? -1 : 0)) : []}
+                                    renderItem={({ item }) => <ItemRows item={item} />}
+                                    keyExtractor={(item, index) => {
+                                        return index;
+                                    }}
+                                />
+                            </ScrollView> : null
+                    }
+                    <View style={{ height: 30 }}>
+                    </View>
+
+                </ScrollView >
+
+        }
     </>
 };
 
@@ -226,9 +230,9 @@ const FirstRoute = () => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
-        flex: 1,
-        backgroundColor:theme.colors.backGround
+        padding: 10,
+        // flex: 1,
+        backgroundColor: theme.colors.backGround
     },
     headerDate: {
         fontSize: 14,
@@ -246,7 +250,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: '#35343A',
     },
-
     chartContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -255,5 +258,17 @@ const styles = StyleSheet.create({
     caseContainer: {
         marginTop: 20,
     },
+    textAll: {
+        fontSize: 15,
+        marginLeft: 10,
+        textAlign: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 18,
+    }
 });
 export default memo(HomeCovidScreen);
