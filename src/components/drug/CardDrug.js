@@ -17,7 +17,7 @@ export default DrugCard = (props) => {
                     keyExtractor={(item) => {
                         return item.id;
                     }}
-                    renderItem={({ item }) => {
+                    renderItem={({ item ,index }) => {
                         return (
                             <>
                                 <TouchableOpacity style={styles.box}
@@ -31,7 +31,7 @@ export default DrugCard = (props) => {
                                     </View>
                                 </TouchableOpacity>
                                 {
-                                    item.id === props.data.length ?
+                                    index === props.data.length -1 ?
                                         <View style={{ height: 20 }}>
                                         </View> : null
                                 }
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     image: {
-        width: 50,
-        height: 50,
+        width: 60,
+        height:60,
         borderRadius: 10,
         marginLeft: 10,
     },

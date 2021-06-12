@@ -3,29 +3,21 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { theme } from '../../core/theme';
 
 
-const ItemRows = ({ item }) => {
+const ItemRowsVN = ({ item }) => {
     return (
        
             <View style={styles.rows}>
-                <View style={{ width: '15%',justifyContent:'center' }}>
-                    <Image
-                        source={{
-                            uri: item.countryInfo.flag
-                        }}
-                        style={styles.flag}
-                    />
+                <View style={{ width: '50%',justifyContent:'center',marginLeft:5  }}>
+                    <Text style={styles.countryName}>{item.name}</Text>
                 </View>
-                <View style={{ width: '30%',justifyContent:'center',marginLeft:5  }}>
-                    <Text style={styles.countryName}>{item.country}</Text>
-                </View>
-                <View style={{ width: '20%',justifyContent:'center'  }}>
+                <View style={{ width: '15%',justifyContent:'center',alignItems:'center'  }}>
                     <Text style={[styles.totalCases,{color: '#E35757' }]}>{item.cases}</Text>
                 </View>
-                <View style={{ width: '15%',justifyContent:'center'  }}>
-                    <Text style={[styles.totalCases, { marginRight: 5,color: '#6AB276' }]}>{item.deaths}</Text>
+                <View style={{ width: '20%',justifyContent:'center' ,alignItems:'center' }}>
+                    <Text style={[styles.totalCases, { marginRight: 5,color: '#6AB276' }]}>{item.recovered}</Text>
                 </View>
-                <View style={{ width: '20%',justifyContent:'center'  }}>
-                    <Text style={[styles.totalCases, { marginRight: 5,color: '#BDBDBD' }]}>{item.recovered}</Text>
+                <View style={{ width: '15%',justifyContent:'center',alignItems:'center'  }}>
+                    <Text style={[styles.totalCases, { marginRight: 5,color: '#BDBDBD' }]}>{item.deaths}</Text>
                 </View>
             </View>
 
@@ -45,13 +37,13 @@ const styles = StyleSheet.create({
         paddingTop:5,
     },
     countryName: {
-        fontSize: 15,
-        marginLeft: 5,
+        fontSize: 16,
+        marginLeft: 10,
         color: 'black',
         fontWeight: 'bold'
     },
     totalCases: {
-        fontSize: 12,
+        fontSize: 13,
         color: '#fff',
         fontWeight: 'bold',
         color: theme.colors.inActiveColor,
@@ -66,4 +58,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ItemRows;
+export default ItemRowsVN;

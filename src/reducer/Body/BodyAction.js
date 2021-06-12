@@ -15,7 +15,6 @@ export const getBodyByIdRequest = (id) => {
     try {                                                                                                
       // call get Body by id                                                                 
       const response = await axios.get(`https://trinh.toolgencode.com/public/api/bodies/${id}`);                                      
-																										 
       dispatch({ type: types.GET_BY_ID_BODY, bodys: response.data});  
 																										 
     } catch (error) {                                                                                    

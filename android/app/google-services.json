@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "588042649592",
+    "project_id": "suckhoeapp",
+    "storage_bucket": "suckhoeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588042649592:android:2088ff00bee2982cf8600d",
+        "android_client_info": {
+          "package_name": "com.suckhoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588042649592-uhbml0lta15evr7negr1upe4u1n80eiu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suckhoe",
+            "certificate_hash": "87acce62a67cfab97542125c8cc21790dc76cd5f"
+          }
+        },
+        {
+          "client_id": "588042649592-14118evoktsdguilc0usso2nmmr1ocr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2J5y35dFU1Lo3BoIrip-qEq8qdi6ygt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588042649592-14118evoktsdguilc0usso2nmmr1ocr9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

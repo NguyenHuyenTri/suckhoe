@@ -8,7 +8,7 @@ import DiseaseReducer from '../reducer/Disease/DiseaseReducer';
 import SlideReducer from '../reducer/Slides/SlideReducer'
 import CovidVietNamReducer from '../reducer/CovidVietNam/CovidVietNamReducer';
 import CovidWorldReducer from '../reducer/CovidWorld/CovidWorldReducer'
-
+import UserReducer   from '../reducer/User/UserReducer'
 const store = createStore( 
     combineReducers({ 
         drug:DrugReducer,
@@ -18,6 +18,7 @@ const store = createStore(
         disease:DiseaseReducer,
         covidworld:CovidWorldReducer,
         covidvn:CovidVietNamReducer,
+        user:UserReducer,
     }),applyMiddleware(thunk) 
   );
 

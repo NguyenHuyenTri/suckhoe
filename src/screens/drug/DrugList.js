@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from "react-native";
+import { StyleSheet  } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBar from '../../components/covid-19/SearchBar';
 import DrugCard from '../../components/drug/CardDrug';
@@ -12,6 +12,7 @@ const DrugList = ({ navigation }) => {
 
     const dispatch = useDispatch();
     const drug = useSelector((state) => _get(state, "drug.drugs", []));
+
 
     const [data, setData] = useState(drug);
     const [tempData, setTempData] = useState();

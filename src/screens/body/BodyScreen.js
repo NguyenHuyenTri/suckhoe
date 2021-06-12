@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import ListCard from '../../components/body/ListCard'
 import { theme } from '../../core/theme'
 
 export default ListBody = (props) => {

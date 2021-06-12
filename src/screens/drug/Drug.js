@@ -2,11 +2,22 @@ import * as React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '../../core/theme';
-
-
+import { useSelector ,useDispatch } from "react-redux";
+import { get as _get } from 'lodash';
+import {GetInsertHistoryRequest} from '../../reducer/User/UserAction'
 const Drug = (props) => {
 
+    const dispatch = useDispatch();
     const [data] =React.useState(props.route.params)
+    const listId = useSelector((state) => _get(state, "user.historyId", []));
+    const user = useSelector((state) => _get(state, "user.users", []));
+
+    React.useEffect(() => {
+        if(listId.indexOf(data.id)===-1&&user.emailVerified){
+            dispatch(GetInsertHistoryRequest(data.id));
+        }
+    }, [data.id])
+    
 
     return (
         <SafeAreaView style={styles.root}>

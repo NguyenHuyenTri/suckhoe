@@ -15,6 +15,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { useSelector, useDispatch } from "react-redux";
 import { get as _get } from 'lodash';
 import { GetAllDrugRequest } from '../../reducer/Drug/DrugAction';
+import { GetInsertHistoryScanRequest } from '../../reducer/User/UserAction';
 import { theme } from '../../core/theme';
 
 function QrCodeScan({ navigation }) {
@@ -54,7 +55,10 @@ function QrCodeScan({ navigation }) {
                 );
             }
         } else {
-            Linking.openURL(e.data).catch(err => {
+            Linking.openURL(e.data).then(()=>{
+                dispatch(GetInsertHistoryScanRequest(e.data));
+            })
+            .catch(err => {
                 Alert.alert(
                     "Thông báo",
                     `${e.data}`,

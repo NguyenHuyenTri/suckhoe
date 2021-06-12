@@ -4,7 +4,7 @@ import types from "./CovidVietNamTypes";
 const initialState = {                                                                         
   isLoading: false,                                                                            
   covidvietnams: [],                                                                     
-  covidvietnam: {}                                                                       
+  covidrow:[],                                                                       
 };                                                                                             
 																							   
 const CovidVietNamReducer = (state = initialState, action) => {                            
@@ -13,7 +13,7 @@ const CovidVietNamReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };                                                    
 																							   
     case types.GET_ALL_COVIDVIETNAM:                                                  
-      return { ...state, covidvietnams: action.covidvietnams, isLoading: false };  
+      return { ...state, covidvietnams: action.covidvietnams,covidrow:action.covidrow, isLoading: false };  
 																							   
     default:                                                                                   
       return state;                                                                            

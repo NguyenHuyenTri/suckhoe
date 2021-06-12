@@ -1,29 +1,25 @@
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button as PaperButton } from 'react-native-paper';
-import { theme } from '../../core/theme';
 
-const Button = ({ mode, style, children, ...props }: Props) => (
+const Button = ({ mode, bgColor, style, icons, colors, children, ...props }: Props) => (
   <PaperButton
-    style={[
-      styles.button,
-      mode === 'outlined' && { backgroundColor: theme.colors.surface},
-      style,
-    ]}
-    labelStyle={styles.text}
+    style={
+      {
+        backgroundColor: bgColor, width: '100%',
+        marginVertical: 10,height:50,justifyContent:'center'
+      }
+    }
+    labelStyle={[styles.text,{color: colors}]}
     mode={mode}
     {...props}
+    icon={icons}
   >
     {children}
   </PaperButton>
 );
 
 const styles = StyleSheet.create({
-  button: {
-    width: '100%',
-    marginVertical: 10,
-    backgroundColor: theme.colors.appbar,
-  },
   text: {
     fontWeight: 'bold',
     fontSize: 15,

@@ -9,7 +9,7 @@ const initialState = {
 const BodyReducer = (state = initialState, action) => {                            
   switch (action.type) {                                                                       
     case types.SET_LOADING_BODY:                                              
-      return { ...state, isLoading: true };                                                    
+      return { ...state,bodys:[], isLoading: true };                                                    
 																							   
     case types.GET_BY_ID_BODY:                                                
       return { ...state, bodys: action.bodys, isLoading: false };    

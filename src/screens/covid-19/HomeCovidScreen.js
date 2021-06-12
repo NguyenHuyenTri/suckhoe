@@ -2,14 +2,14 @@ import React, { memo, useState, useEffect } from 'react';
 import {
     View,
     StyleSheet,
-    Text, useWindowDimensions, ScrollView, SafeAreaView,
+    Text, useWindowDimensions, ScrollView,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
 import 'moment/locale/vi';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import ItemRows from '../../components/covid-19/ItemRows';
+import ItemRowsVn from '../../components/covid-19/ItemRowsVn'
 import ChartView from '../../components/covid-19/ChartView';
 import CaseView from '../../components/covid-19/CaseView';
 import { theme } from '../../core/theme';
@@ -20,7 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { GetCovidVietNamRequest } from '../../reducer/CovidVietNam/CovidVietNamAction';
 import { GetAllCovidWorldRequest } from '../../reducer/CovidWorld/CovidWorldAction';
 
-const HomeCovidScreen = ({ navigation }) => {
+const HomeCovidScreen = () => {
     const layout = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
 
@@ -67,6 +67,7 @@ const FirstRoute = () => {
     const [dateTime, setDateTime] = useState(new Date());
     const dispatch = useDispatch();
     const covidvietnam = useSelector((state) => _get(state, "covidvn.covidvietnams", []));
+    const covidrow = useSelector((state) => _get(state, "covidvn.covidrow", []));
 
     useEffect(() => {
         const id = setInterval(() => setDateTime(new Date()), 60000);
@@ -94,7 +95,7 @@ const FirstRoute = () => {
         <>
             {
                 covidvietnam.length === 0 ? <Loading /> :
-                    <ScrollView style={styles.container} >
+                    <ScrollView style={styles.container} horizontal={false}>
                         <View>
                             <Text style={styles.headerDate}>{convertTime(dateTime, 'LLLL')}</Text>
                             <Text style={styles.headerTitle}>Ca nhiễm vi-rút corona Việt Nam</Text>
@@ -107,7 +108,6 @@ const FirstRoute = () => {
                                 arrownum={covidvietnam ? numberWithCommas(covidvietnam.todayRecovered) : 0}
                             />
                         </View>
-
                         <View style={styles.caseContainer} >
                             <CaseView title='Đang điều trị'
                                 case={covidvietnam ? numberWithCommas(covidvietnam.active) : 0}
@@ -116,9 +116,38 @@ const FirstRoute = () => {
                             />
                             <View style={{ height: 10 }} />
                         </View>
-                        <View style={{ height: 30 }}>
-                        </View>
+                        {
+                        covidrow.length > 0 || !isLoading ?
+
+                            <ScrollView horizontal={true}
+                                contentContainerStyle={{
+                                    flex: 1, flexDirection: 'column', height: 400,
+                                    backgroundColor: '#FFFFFF'
+                                }}>
+                                <Text style={{ padding: 10, textAlign: 'center', justifyContent: 'center', fontSize: 20, marginBottom:5, fontWeight: 'bold' }} >Số ca nhiễm theo tỉnh thành</Text>
+                                <View style={{
+                                    flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 5,
+                                    alignItems: 'center', marginBottom: 10, borderBottomColor: theme.colors.backGround, borderWidth: 2,
+                                    borderTopColor: 'white', borderLeftColor: 'white', borderRightColor: 'white',
+                                }}>
+
+                                    <Text style={{ fontSize: 15, color: '#E35757' }}>⬤ Nhiễm bệnh</Text>
+                                    <Text style={{ fontSize: 15, color: '#6AB276' }}>⬤ Bình phục</Text>
+                                    <Text style={{ fontSize: 15, color: '#BDBDBD' }}>⬤ Tử vong</Text>
+                                </View>
+                                <FlatList
+                                    data={covidrow.length > 0 ? covidrow.sort((a, b) => (a.cases < b.cases) ? 1 : ((b.cases < a.cases) ? -1 : 0)) : []}
+                                    renderItem={({ item }) => <ItemRowsVn item={item} />}
+                                    keyExtractor={(item, index) => {
+                                        return index;
+                                    }}
+                                />
+                                 <View style={{ height: 10 }}>
+                                </View>
+                            </ScrollView> : null
+                    }
                     </ScrollView>
+                    
             }
         </>
     )
@@ -216,7 +245,7 @@ const SecondRoute = () => {
                                 />
                             </ScrollView> : null
                     }
-                    <View style={{ height: 30 }}>
+                    <View style={{ height: 10 }}>
                     </View>
 
                 </ScrollView >

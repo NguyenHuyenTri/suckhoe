@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef,useState} from 'react';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import {
     View,
@@ -13,7 +13,6 @@ const { width: screenWidth } = Dimensions.get('window');
 const MyCarousel = props => {
     const slides = useSelector((state) => _get(state, "slide.slides", []));
     const carouselRef = useRef(null);
-
     const renderItem = ({ item, index }, parallaxProps) => {
         return (
             <View style={styles.item}>
@@ -36,6 +35,12 @@ const MyCarousel = props => {
                 sliderHeight={270}
                 itemWidth={screenWidth - 60}
                 data={slides}
+                autoplay={true}
+                autoplayInterval={8000}
+                autoplayDelay={2000}
+                vertical={false}
+                loop={true}
+                enableSnap={true}
                 renderItem={renderItem}
                 hasParallaxImages={true}
             />

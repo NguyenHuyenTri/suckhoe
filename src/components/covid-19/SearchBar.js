@@ -17,7 +17,9 @@ const Search = (props) => {
     }
 
     return (
-        <View keyboardShouldPersistTaps="handled">
+        <View keyboardShouldPersistTaps="handled" style={{borderBottomColor:theme.colors.backGround,borderWidth:2,
+            borderTopColor:'white',borderLeftColor:'white',borderRightColor:'white'
+        }}>
             <SearchBar
                 round
                 onChangeText={(text) => changeText(text)}

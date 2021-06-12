@@ -1,9 +1,5 @@
 export { default as LoginScreen } from './LoginScreen';
 export {default as SplashScreen} from  './SplashScreen';
-export {default as RegisterScreen} from  './RegisterScreen';
-export {default as DashBoardScreen} from  './DashBoardScreen';
-export {default as ForgotPasswordScreen} from  './ForgotPasswordScreen';
-
 
 export {default as HomeCovidScreen} from './covid-19/HomeCovidScreen';
 export {default as Home} from './Home/Home';
@@ -29,4 +25,7 @@ export {default as WeatherScreen} from './weather/WeatherScreen';
 export {default as Weather} from './weather/Weather';
 
 
-export {default as QrCodeScreen} from './qrcode/QrCodeScreen'
+export {default as QrCodeScreen} from './qrcode/QrCodeScreen';
+
+
+export {default as HistoryScreen} from './history/HistoryScreen';

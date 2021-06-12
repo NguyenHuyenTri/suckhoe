@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import {
     View,
     StyleSheet,
@@ -15,26 +15,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({ navigation }) => {
 
-    useEffect(() => {
-        storeData({skip:true})
-    }, [])
+
 
     const storeData = async (value) => {
         try {
-          const jsonValue = JSON.stringify(value)
-          await AsyncStorage.setItem('@storage_Key', jsonValue)
+            const jsonValue = JSON.stringify(value)
+            await AsyncStorage.setItem('@storage_Key', jsonValue)
         } catch (e) {
             alert('Lỗi')
         }
-      }
-    
+    }
+
+    useEffect(() => {
+        storeData({ skip: true })
+    }, [])
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#fff" barStyle="dark-content" />
             <Header navigation={navigation} />
 
             <ScrollView>
-                <Slide/>
+                <Slide />
                 <View style={styles.iconContainer}>
                     <View style={styles.item}>
                         <Icons bgColor={theme.home.gridview} name="viruses" color="red" navigation={navigation}
@@ -46,15 +48,15 @@ const HomeScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.item}>
                         <Icons bgColor={theme.home.gridview} name="child" color={theme.home.icon}
-                            navigation={navigation} navigate='BodyScreen'  navigation={navigation}>Bệnh theo vùng{'\n'} cơ thể</Icons>
+                            navigation={navigation} navigate='BodyScreen' navigation={navigation}>Bệnh theo vùng{'\n'} cơ thể</Icons>
                         <Icons bgColor={theme.home.gridview} name="cloud-sun" color={theme.home.icon}
                             navigation={navigation} navigate='WeatherScreen'>Bệnh theo mùa</Icons>
                     </View>
                     <View style={styles.item}>
                         <Icons bgColor={theme.home.gridview} name="newspaper" color={theme.home.icon}
                             navigation={navigation} navigate='CategoryScreen' >Bài viết</Icons>
-                        <Icons bgColor={theme.home.gridview} name="ellipsis-h" color={theme.home.icon}
-                            navigation={navigation} navigate='HomeCovidScreen' >Xem thêm</Icons>
+                        <Icons bgColor={theme.home.gridview} name="file-medical-alt" color={theme.home.icon}
+                            navigation={navigation} navigate='HistoryScreen' >Lịch sử</Icons>
                     </View>
                 </View>
             </ScrollView>
@@ -84,4 +86,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default memo(HomeScreen);
+export default HomeScreen;

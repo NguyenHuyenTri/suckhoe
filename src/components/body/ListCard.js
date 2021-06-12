@@ -1,8 +1,10 @@
 import React,{useEffect,useState} from 'react';
 import { StyleSheet, TouchableOpacity, View, Image, Text, FlatList } from 'react-native';
-import {body} from '../../data/data'
 export default ListCard = (props) => {
     const {data} = props;
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
     return (
         <>
             <View style={styles.root}>
