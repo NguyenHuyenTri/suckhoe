@@ -98,7 +98,7 @@ function QrCodeScan({ navigation }) {
                 cameraType={state ? 'front' : 'back'}
                 permissionDialogMessage={'Cần sự cho phép để truy cập máy ảnh'}
                 reactivateTimeout={1000}
-                // showMarker={true}
+                showMarker={true}
                 containerStyle={{ backgroundColor: '#FFFFFF' }}
                 markerStyle={{ borderColor: theme.colors.inActiveColor, borderRadius: 10, marginBottom: '25%' }}
                 cameraStyle={{ width: windowWidth, alignSelf: 'center', height: windowHeight - 50 }}

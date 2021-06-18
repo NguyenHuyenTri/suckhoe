@@ -19,6 +19,7 @@ import Loading from '../../components/body/Loading'
 import { useSelector, useDispatch } from "react-redux";
 import { GetCovidVietNamRequest } from '../../reducer/CovidVietNam/CovidVietNamAction';
 import { GetAllCovidWorldRequest } from '../../reducer/CovidWorld/CovidWorldAction';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 const HomeCovidScreen = () => {
     const layout = useWindowDimensions();
@@ -29,7 +30,7 @@ const HomeCovidScreen = () => {
         { key: 'second', title: 'Thế giới' },
     ]);
 
-  
+
     const renderScene = SceneMap({
         first: FirstRoute,
         second: SecondRoute,
@@ -117,37 +118,46 @@ const FirstRoute = () => {
                             <View style={{ height: 10 }} />
                         </View>
                         {
-                        covidrow.length > 0 || !isLoading ?
+                            covidrow.length > 0 || !isLoading ?
 
-                            <ScrollView horizontal={true}
-                                contentContainerStyle={{
-                                    flex: 1, flexDirection: 'column', height: 400,
-                                    backgroundColor: '#FFFFFF'
-                                }}>
-                                <Text style={{ padding: 10, textAlign: 'center', justifyContent: 'center', fontSize: 20, marginBottom:5, fontWeight: 'bold' }} >Số ca nhiễm theo tỉnh thành</Text>
-                                <View style={{
-                                    flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 5,
-                                    alignItems: 'center', marginBottom: 10, borderBottomColor: theme.colors.backGround, borderWidth: 2,
-                                    borderTopColor: 'white', borderLeftColor: 'white', borderRightColor: 'white',
-                                }}>
+                                <ScrollView horizontal={true}
+                                    contentContainerStyle={{
+                                        flex: 1, flexDirection: 'column', height: 500,
+                                        backgroundColor: '#FFFFFF'
+                                    }}>
+                                    <Text style={{ padding: 10, textAlign: 'center', justifyContent: 'center', fontSize: 20, marginBottom: 5, fontWeight: 'bold' }} >Số ca nhiễm theo tỉnh thành</Text>
+                                    <View style={{
+                                        flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 5,
+                                        alignItems: 'center', marginBottom: 10, borderBottomColor: theme.colors.backGround, borderWidth: 2,
+                                        borderTopColor: 'white', borderLeftColor: 'white', borderRightColor: 'white',
+                                    }}>
 
-                                    <Text style={{ fontSize: 15, color: '#E35757' }}>⬤ Nhiễm bệnh</Text>
-                                    <Text style={{ fontSize: 15, color: '#6AB276' }}>⬤ Bình phục</Text>
-                                    <Text style={{ fontSize: 15, color: '#BDBDBD' }}>⬤ Tử vong</Text>
-                                </View>
-                                <FlatList
-                                    data={covidrow.length > 0 ? covidrow.sort((a, b) => (a.cases < b.cases) ? 1 : ((b.cases < a.cases) ? -1 : 0)) : []}
-                                    renderItem={({ item }) => <ItemRowsVn item={item} />}
-                                    keyExtractor={(item, index) => {
-                                        return index;
-                                    }}
-                                />
-                                 <View style={{ height: 10 }}>
-                                </View>
-                            </ScrollView> : null
-                    }
+                                        <Text style={{ fontSize: 15, color: '#E35757' }}>
+                                            <Icon name='user-alt' size={14} color='#E35757' />
+                                            {' '}
+                                            Nhiễm bệnh</Text>
+                                        <Text style={{ fontSize: 15, color: '#6AB276' }}>
+                                            <Icon name='user-alt' size={14} color='#6AB276' />
+                                            {' '}
+                                            Bình phục</Text>
+                                        <Text style={{ fontSize: 15, color: '#BDBDBD' }}>
+                                            <Icon name='user-alt' size={14} color='#BDBDBD' />
+                                            {' '}
+                                            Tử vong</Text>
+                                    </View>
+                                    <FlatList
+                                        data={covidrow.length > 0 ? covidrow.sort((a, b) => (a.cases < b.cases) ? 1 : ((b.cases < a.cases) ? -1 : 0)) : []}
+                                        renderItem={({ item }) => <ItemRowsVn item={item} />}
+                                        keyExtractor={(item, index) => {
+                                            return index;
+                                        }}
+                                    />
+                                    <View style={{ height: 10 }}>
+                                    </View>
+                                </ScrollView> : null
+                        }
                     </ScrollView>
-                    
+
             }
         </>
     )
@@ -222,7 +232,7 @@ const SecondRoute = () => {
 
                             <ScrollView horizontal={true}
                                 contentContainerStyle={{
-                                    flex: 1, flexDirection: 'column', height: 400,
+                                    flex: 1, flexDirection: 'column', height: 500,
                                     backgroundColor: '#FFFFFF'
                                 }}>
                                 <Text style={{ padding: 10, textAlign: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 'bold' }} >Số ca nhiễm theo quốc gia</Text>
@@ -232,9 +242,18 @@ const SecondRoute = () => {
                                     borderTopColor: 'white', borderLeftColor: 'white', borderRightColor: 'white',
                                 }}>
 
-                                    <Text style={{ fontSize: 15, color: '#E35757' }}>⬤ Nhiễm bệnh</Text>
-                                    <Text style={{ fontSize: 15, color: '#6AB276' }}>⬤ Bình phục</Text>
-                                    <Text style={{ fontSize: 15, color: '#BDBDBD' }}>⬤ Tử vong</Text>
+                                    <Text style={{ fontSize: 15, color: '#E35757' }}>
+                                        <Icon name='user-alt' size={14} color='#E35757' />
+                                        {' '}
+                                        Nhiễm bệnh</Text>
+                                    <Text style={{ fontSize: 15, color: '#6AB276' }}>
+                                        <Icon name='user-alt' size={14} color='#6AB276' />
+                                        {' '}
+                                        Bình phục</Text>
+                                    <Text style={{ fontSize: 15, color: '#BDBDBD' }}>
+                                        <Icon name='user-alt' size={14} color='#BDBDBD' />
+                                        {' '}
+                                        Tử vong</Text>
                                 </View>
                                 <FlatList
                                     data={covidcountrys.length > 0 ? covidcountrys.sort((a, b) => (a.cases < b.cases) ? 1 : ((b.cases < a.cases) ? -1 : 0)) : []}

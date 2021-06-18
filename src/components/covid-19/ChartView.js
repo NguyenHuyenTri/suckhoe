@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-const ChartLine = ({height, style, color}) => {
+const ChartLine = ({height, style, color,height_line}) => {
   return (
     <View style={[styles.line, {height}, style]}>
-      <View style={[styles.fill, {height: '40%', backgroundColor: color}]} />
+      <View style={[styles.fill, {height: height_line, backgroundColor: color}]} />
     </View>
   );
 };
@@ -18,22 +18,23 @@ const ChartView = ({title, num, color , arrownum }) => {
         </Text>
         <Text style={[styles.number, {color}]}>{num}</Text>
       </View>
-      <View style={styles.chart}>
+      {/* <View style={styles.chart}>
         <View style={styles.chartContainer}>
-          {Array(15)
+          {Array(1)
             .fill(0)
             .map((e, i) => {
               return (
                 <ChartLine
                   key={i.toString()}
-                  height={30 + parseInt(70 * Math.random())}
+                  height={100}
+                  height_line={100}
                   style={[i == 14 && {marginRight: 0}]}
                   color={color}
                 />
               );
             })}
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -42,7 +43,7 @@ export default ChartView;
 
 const styles = StyleSheet.create({
   container: {
-    height: 220,
+    height: 100,
     width:'49%',
     backgroundColor: '#fff',
     shadowColor: 'gray',
@@ -50,10 +51,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     borderRadius: 10,
+    justifyContent:'center'
+  },
+  header:{
+   
   },
   title: {
     fontSize: 16,
     fontWeight: '500',
+    marginBottom:5
   },
   number: {
     fontSize: 20,

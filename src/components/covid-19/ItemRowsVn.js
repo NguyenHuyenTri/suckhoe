@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { theme } from '../../core/theme';
-
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 const ItemRowsVN = ({ item }) => {
     return (
@@ -11,7 +11,8 @@ const ItemRowsVN = ({ item }) => {
                     <Text style={styles.countryName}>{item.name}</Text>
                 </View>
                 <View style={{ width: '15%',justifyContent:'center',alignItems:'center'  }}>
-                    <Text style={[styles.totalCases,{color: '#E35757' }]}>{item.cases}</Text>
+                    <Text style={[styles.totalCases,{color: '#E35757' }]}>
+                        {item.cases}</Text>
                 </View>
                 <View style={{ width: '20%',justifyContent:'center' ,alignItems:'center' }}>
                     <Text style={[styles.totalCases, { marginRight: 5,color: '#6AB276' }]}>{item.recovered}</Text>
